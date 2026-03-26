@@ -21,3 +21,5 @@ This is a traditional text adventure that was written for The BDB Project. The g
 ## Release notes
 
 Release 1 was compiled with Inform 6 version 6.42 and the PunyInform library version 5.14. This was released for [ParserComp 2025](https://itch.io/jam/parsercomp-2025).
+
+Release 2 was compiled with Inform 6 version 6.44 and the PunyInform library version 6.0.2. This was a post-comp release to account for feedback from ParserComp and changes in the PunyInform library. It also included many small enhancements, such as minor bug fixes, string and code optimisation, some minor rewording, improvements around the mirror in the bedroom and addition of hints. There were no changes to puzzles.
