@@ -1,0 +1,2827 @@
+!% -~S
+!% $OMIT_UNUSED_ROUTINES=1
+!% $ZCODE_LESS_DICT_DATA=1
+!% $MAX_ABBREVS=96
+!========================================
+! Desperados
+! Kenneth Johnson trilogy #3
+! Copyright © 2025 Gianluca Girelli
+!========================================
+!Constant DEBUG;
+
+Abbreviate ". ";
+Abbreviate ", ";
+Abbreviate " the ";
+Abbreviate "You";
+Abbreviate "The";
+Abbreviate "It's";
+Abbreviate "ing";
+Abbreviate "you";
+Abbreviate "and";
+Abbreviate "village";
+Abbreviate "'re";
+Abbreviate "that";
+Abbreviate "'ll have to";
+Abbreviate "perados";
+Abbreviate "'t ";
+Abbreviate "'s ";
+Abbreviate "ther";
+Abbreviate "d to ";
+Abbreviate "at ";
+Abbreviate "e of";
+Abbreviate "is ";
+Abbreviate "nd o";
+Abbreviate "'ll ";
+Abbreviate "ut ";
+Abbreviate "d b";
+Abbreviate "e to ";
+Abbreviate "ill ";
+Abbreviate "e w";
+Abbreviate "already ";
+Abbreviate "e b";
+Abbreviate "them";
+Abbreviate "Ramirez";
+Abbreviate "e s";
+Abbreviate "en ";
+Abbreviate ".^^";
+Abbreviate "ver";
+Abbreviate "e c";
+Abbreviate "e no";
+Abbreviate "ng ";
+Abbreviate "it ";
+Abbreviate "a small ";
+Abbreviate "ell tower";
+Abbreviate "they";
+Abbreviate "looks ";
+Abbreviate "e from";
+Abbreviate "an ";
+Abbreviate "e m";
+Abbreviate "d w";
+Abbreviate "as ";
+Abbreviate "der";
+Abbreviate "ter";
+Abbreviate "th ";
+Abbreviate "es ";
+Abbreviate "in ";
+Abbreviate "It ";
+Abbreviate "their ";
+Abbreviate "e for ";
+Abbreviate " to ";
+Abbreviate "her";
+Abbreviate "ead";
+Abbreviate "illa";
+Abbreviate "for";
+Abbreviate "sho";
+Abbreviate "irection";
+Abbreviate "cor";
+Abbreviate "s ar";
+Abbreviate "s o";
+Abbreviate "from";
+Abbreviate "e on";
+Abbreviate "est";
+Abbreviate "wit";
+Abbreviate "weapon";
+Abbreviate "car";
+Abbreviate "e a";
+Abbreviate "_to/";
+Abbreviate "front";
+Abbreviate "s b";
+Abbreviate "s d";
+Abbreviate "ent";
+Abbreviate "wer";
+Abbreviate "loor";
+Abbreviate "ight";
+Abbreviate "ear";
+Abbreviate "con";
+Abbreviate "ll m";
+Abbreviate "squar";
+Abbreviate "can";
+Abbreviate "script";
+Abbreviate "e it";
+Abbreviate "somet";
+Abbreviate "would";
+Abbreviate "int";
+Abbreviate " to";
+Abbreviate " on";
+Abbreviate " lo";
+Abbreviate " not";
+
+Constant Story "Desperados";
+Constant Headline "^Kenneth Johnson trilogy #3^Copyright (c) 2025 Gianluca Girelli^Type ABOUT for further info and credits.^^";
+
+Array UUID_ARRAY string "UUID://9ead9613-bc13-4c62-af3d-186247a78d9e//";
+#Ifdef UUID_ARRAY;
+#Endif;
+
+Release 1;
+Serial "250629";
+
+!Inform 6 constants
+Constant DEATH_MENTION_UNDO;
+Constant MAX_CARRIED = 7;
+Constant NO_SCORE;
+
+!PunyInform constants
+Constant OPTIONAL_EXTENDED_METAVERBS;
+Constant OPTIONAL_EXTENDED_VERBSET;
+Constant OPTIONAL_FULL_DIRECTIONS;
+Constant OPTIONAL_PRINT_SCENERY_CONTENTS;
+Constant OPTIONAL_PROVIDE_UNDO;
+Constant RUNTIME_ERRORS 0;!0 for release, 2 for debug
+
+!PunyInform static messages
+Constant MSG_COMMENT_NO_TRANSCRIPT "Comment recorded. Use SCRIPT ON to save future comments in a transcript.^";
+Constant MSG_COMMENT_TRANSCRIPT "Comment recorded.^";
+Constant MSG_LISTEN_DEFAULT "You can't hear anything out of the ordinary.";
+Constant MSG_PARSER_UNKNOWN_VERB "That's not a verb I recognise.";
+Constant MSG_PARSER_NO_INPUT "You need to enter a command.";
+Constant MSG_PRAY_DEFAULT "You pray that you can find those desperados and make them pay for their crimes.";
+Constant MSG_SHOUT_DEFAULT "Not now. If there are any desperados in the village, they might hear you.";
+Constant MSG_SING_DEFAULT "You don't want to be heard, so you hum to yourself instead.";
+Constant MSG_SLEEP_DEFAULT "You can take a kip after you've apprehended those desperados.";
+Constant MSG_SORRY_DEFAULT "Oh, don't apologise.";
+Constant MSG_SWIM_DEFAULT "Swimming requires water. Take a look around. Do you see any water here?";
+Constant MSG_TAKE_YOURSELF "That would be a clever trick.";
+Constant MSG_THINK_DEFAULT "You start thinking about all the horrible things that Ramirez and his gang have done and that hardens your resolve to catch them.";
+Constant MSG_WAIT_DEFAULT "Time passes...";
+
+!PunyInform dynamic messages
+Constant MSG_CLOSE_NOT_OPEN 1000;
+Constant MSG_LOCK_ALREADY_LOCKED 1001;
+Constant MSG_LOCK_CLOSE_FIRST 1002;
+Constant MSG_LOCK_KEY_DOESNT_FIT 1003;
+Constant MSG_UNLOCK_ALREADY_UNLOCKED 1004;
+Constant MSG_UNLOCK_KEY_DOESNT_FIT 1005;
+
+!Replaced actions
+Replace GoSub; !Delete if diagonal directions are used
+Replace LockSub;
+Replace UnlockSub;
+
+Include "globals.h";
+
+!Game-specific constants
+Constant AN "an";
+Constant THE "the";
+Constant CANT_GO_INTO_DESERT "This time venturing into the desert could lead to your doom. Explore the village and find those desperados.";
+Constant DONT_DROP_WEAPONS "Don't drop your weapons. You never know when you might need them.";
+Constant DONT_GO_WANDERING_OFF "Don't go wandering off. The boy seems to have a plan, so follow his instructions.";
+Constant NOTHING_BUT_PEWS "There's nothing there but pews.";
+Constant SMELL_IS_REVOLTING "The smell is revolting. It smells like burnt flesh intermingled with the smoke from burnt wood.";
+Constant SMELL_ROTTING_FLESH "You smell the stench of rotting flesh.";
+Constant TOO_FAR_TO_GO_ON_FOOT "It's too far to go on foot.";
+Constant YOU_PLACE_IT_CAREFULLY "You place it down carefully, so as not to break the glass.";
+
+!Game-specific variables
+
+!========================================
+! Entry point routines
+!========================================
+[ ChooseObjects obj code;
+  if (code == 2)
+  {
+    ! Stage 1: Disambiguation
+    if (action_to_be == ##Drop && obj in player && obj hasnt worn)
+      return 1; !Appropriate
+    if (action_to_be == ##Take && obj has scenery or static)
+      return 0; !Inappropriate
+    if (action_to_be == ##Take && obj notin player)
+      return 1; !Appropriate
+    return 0; !Inappropriate
+  }
+  ! Stage 2: Processing an "all"
+  if (obj has scenery or concealed or static or animate)
+    return 2; !Force exclusion
+  return 0; !Accept parser's decision
+];
+
+[ InScope person i;
+  if (person == player && location == thedark)
+    objectloop(i in parent(player))
+      if (i has moved)
+        PlaceInScope(i);
+  rfalse;
+];
+
+[ LibraryMessages p_msg p_arg_1 p_arg_2;
+  switch (p_msg)
+  {
+    MSG_CLOSE_NOT_OPEN:
+      print_ret (CTheyreOrIts)noun, " already closed.";
+    MSG_LOCK_ALREADY_LOCKED:
+      print_ret (CTheyreOrIts)noun, " already locked.";
+    MSG_LOCK_CLOSE_FIRST:
+      "You'll have to close ", (ItOrThem)noun, " first.";
+    MSG_LOCK_KEY_DOESNT_FIT:
+      print_ret (The)second, " ", (DoesntOrDont)second, " fit the lock.";
+    MSG_UNLOCK_ALREADY_UNLOCKED:
+      print_ret (CTheyreOrIts)noun, " already unlocked.";
+    MSG_UNLOCK_KEY_DOESNT_FIT:
+      print_ret (The)second, " ", (DoesntOrDont)second, " fit the lock.";
+  }
+  p_arg_1 = p_arg_2;
+];
+
+Include "puny.h";
+
+!========================================
+! Initialisation
+!========================================
+[ Initialise;
+  location = room01;
+  lookmode = 2;
+  move clothes to player;
+  move rifle to player;
+  move revolver to player;
+  no_implicit_actions = true;
+  player.description = "Your name is Kenneth Johnson and you're the sheriff of Tucson. You're on the trail of the bandits that assaulted and killed those settlers on the border. It's a dangerous undertaking, but it's your duty to catch them.";
+  "^In the days when the Wild West was roamed by bandits and murderers, lawmen had a lot to deal with. Honest sheriffs and brave rangers tracked outlaws over wild terrain, but very often they had to stop at the Mexican border, because they had no jurisdiction in Mexico.^^Countless gangs of bandits used this to their advantage. They would cross the border to rob and kill in the southern states, then return to Mexico to spend their stolen loot.^^In your role as the sheriff of Tucson, Arizona, you had experienced this humiliating situation many times, but this time was different. Manolo Ramirez and his gang had attacked a small community of settlers, kidnapped the girls and killed everyone else. That day, you decided that jurisdictional boundaries shouldn't be used to allow these criminals to get away with murder. There comes a time when humanity, compassion and justice must prevail.^^So, you left your tin star on your office desk and entrusted the care of the town to your deputy. You were soon in hot pursuit of Ramirez and his gang.^^The first three days of your search lead to nothing but dead ends. On the fourth day, your horse was spooked by a rattlesnake and galloped off, leaving you alone on foot without any supplies, apart from your weapons. Tired, and low on ammunition, you trudged on until you reached the outskirts of a small village, but there was no sign of life. Normally, there would be dogs and chickens and the children would run out to meet a stranger. You had a horrible feeling that the desperados had been here and the hoof tracks attested to that.^^As you approach the village, your nostrils are accosted by the stench of death and decay. You are now sure that Ramirez's gang had once again ravaged a small, defenceless community. It's time for this to end once and for all. It's time to track down these murderers and make them pay!^";
+];
+
+!========================================
+! Classes
+!========================================
+Class Body
+with
+  life
+  [;
+    Ask:
+      "You're not likely to get an answer from a lifeless body.";
+    Attack, ThrowAt:
+      "Show some empathy. Allow the dead to rest in peace.";
+    Give:
+      "Dead bodies aren't normally in the habit of accepting gifts.";
+    Kiss:
+      "Eww, gross.";
+    Show:
+      "The dead body shows no interest in ", (the)noun, ". I wonder why.";
+    Talk:
+      "You strike up a one-sided conversation with the dead body, but it's bored to death.";
+    Tell:
+      "The corpse listens intently to what you have to say. Or maybe it's not listening at all. It's hard to tell.";
+    WakeOther:
+      "You give ", (the)noun, " a shake, but it doesn't respond.";
+  ],
+  before
+  [;
+    Pull, Push, Take:
+      "Please do not disturb the dead just yet. You will give them a proper burial as soon as possible.";
+  ],
+has animate;
+
+Class OpenableContainer
+with
+  invent
+  [;
+    if (inventory_stage == 2 && (self hasnt open || child(self) == 0))
+      rtrue;
+  ],
+has;
+
+Class OpenContainer
+with
+  invent
+  [;
+    if (inventory_stage == 2 && child(self) == 0)
+      rtrue;
+  ],
+has container open;
+
+!========================================
+! Inventory
+!========================================
+!----------------------------------------
+! Clothes
+!----------------------------------------
+Object clothes "clothes"
+with
+  article "your",
+  name 'clothes' 'clothing' 'garments' 'tin' 'star',
+  description "You're the sheriff of Tucson and dressed accordingly. This time, though, you had to leave your tin star at home.",
+  before
+  [;
+    Disrobe:
+      "You'd better not. You need your clothes to protect you from the blazing desert sun.";
+  ],
+has clothing pluralname worn;
+
+!----------------------------------------
+! Revolver
+!----------------------------------------
+Object revolver "revolver"
+with
+  name 'colt' 'revolver' 'handgun' 'pistol' 'gun' 'guns//p' 'weapon' 'weapons//p' 'single-action' 'single' 'action' 'army' 'm1873' 'peacemaker' '45' 'calibre',
+  description
+  [;
+    print "It's a Colt single-action army revolver, also known as the M1873 or 'Peacemaker'. It's a 45 calibre handgun, originally made for the US Army in 1873. It's currently ";
+    if (self.number == 0)
+      "empty.";
+    print "loaded with ", self.number, " bullet";
+    if (self.number > 1)
+      print "s";
+    ".";
+  ],
+  before
+  [;
+    Drop:
+      if (location ~= room20)
+        print_ret (string)DONT_DROP_WEAPONS;
+    Load:
+      if (second == nothing && bullets in player)
+      {
+        print "(with the bullets)^";
+        second = bullets;
+      }
+      if (second == nothing)
+        "You have nothing to load it with.";
+      if (second ~= bullets)
+        "You can't load the revolver with ", (ThatOrThose)second, ".";
+      if (self.number == 6)
+        print "The revolver is already fully loaded. Besides, those";
+      else
+        print "Those";
+      " are rifle bullets. They can't be loaded into your revolver.";
+  ],
+  number 6,
+has;
+
+!----------------------------------------
+! Rifle
+!----------------------------------------
+Object rifle "rifle"
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'rifle' or 'gun' or 'guns//p' or 'weapon' or 'weapons//p' or 'winchester' or 'model' or '1866' or 'lever-action' or 'lever' or 'action' or 'repeating' or 'long-range' or 'long' or 'range' or 'yellow' or 'boy' or 'receiver')
+    {
+      i++;
+      if (nw == 'boy' && (TestScope(scared_boy) || Testscope(brave_boy)))
+        flag++;
+      if (nw == 'lever' && TestScope(lever))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description
+  [;
+    print "It's a Winchester Model 1866 lever-action repeating rifle, a long-range weapon used for shooting targets at a distance. It goes by the nickname of 'Yellow Boy' because of the distinctive bronze/brass alloy used for its receiver. It's ";
+    if (self.number == 0)
+      "not currently loaded.";
+    print "loaded with ", self.number, " bullet";
+    if (self.number > 1)
+      print "s";
+    ".";
+  ],
+  before
+  [;
+    Drop:
+      if (location ~= room20)
+        print_ret (string)DONT_DROP_WEAPONS;
+    Load:
+      if (second == nothing && bullets in player)
+      {
+        print "(with the bullets)^";
+        second = bullets;
+      }
+      if (second == nothing)
+        "You'll have to tell me what to load it with.";
+      if (second ~= bullets)
+        "You can't load the rifle with ", (ThatOrThose)second, ".";
+      self.number = self.number + 12;
+      move bullets to limbo;
+      "You load the bullets into your rifle. You're now ready to make the world a better place.";
+  ],
+  number 0,
+has;
+
+!========================================
+! Room 1: Trail from Desert
+!========================================
+Object room01 "Trail from Desert"
+with
+  description "You're on a dusty trail that runs from the desert in the east to a Mexican village in the west. The untracked desert extends to the north and south of the trail. The sun beats down on you, so going back towards the desert is not an option, as it would put your life in danger.",
+  n_to CANT_GO_INTO_DESERT,
+  s_to CANT_GO_INTO_DESERT,
+  e_to TOO_FAR_TO_GO_ON_FOOT,
+  w_to room02,
+has light;
+
+!----------------------------------------
+! Trail
+!----------------------------------------
+Object "trail" room01
+with
+  name 'dusty' 'trail',
+  description "The trail leads east towards the harsh desert and west towards the village. You notice traces of hoof prints leading to the village.",
+has scenery;
+
+!----------------------------------------
+! Desert (floating object)
+!----------------------------------------
+Object "desert"
+with
+  name 'harsh' 'untracked' 'desert' 'sand',
+  description "The harsh desert surrounds you.",
+  found_in room01 room02,
+has scenery;
+
+!----------------------------------------
+! Mexican village
+!----------------------------------------
+Object "village" room01
+with
+  name 'mexican' 'village',
+  description "The village is further along the trail to the west. You can't see it clearly from here, but the evidence leads you to believe that that's where the outlaws headed.",
+has scenery;
+
+!----------------------------------------
+! Hoof prints (floating object)
+!----------------------------------------
+Object "hoof prints"
+with
+  name 'fresh' 'horses^' 'hoof' 'hooves' 'tracks' 'prints' 'traces',
+  description
+  [;
+    print "You can make out hoof prints from a large group of horses, but you can't tell how many. The prints are a few days old, so you bet they belong to Manolo Ramirez's desperados. The hoof prints head west ";
+    if (self in room01)
+      "towards the village.";
+    else
+      "out of the village, but you can't follow them on foot. You're sure the bandits will return. You just need to be prepared and be patient.";
+  ],
+  found_in room01 room11,
+has pluralname scenery;
+
+!----------------------------------------
+! Wooden sign
+!----------------------------------------
+Object sign "wooden sign" room01
+with
+  name 'wood' 'wooden' 'sign',
+  description
+  [;
+    print "It's a wooden sign that bears the name of the village. ";
+    if (self hasnt general)
+      "It's bleached by the sun, but you might be able to read it.";
+    else
+      "Now that you've shot it, you can no longer read the name.";
+  ],
+  before
+  [;
+    Read:
+      print "The sign is bleached by the burning sun and the lettering has faded";
+      if (sign hasnt general)
+        ", but you can still make out the name 'San Fernando'.";
+      else
+        ". You would have been able to read it, but the wood is now splintered from where you shot it.";
+    Shoot:
+      if (second == nothing && rifle in player && revolver in player)
+        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT SIGN WITH REVOLVER.";
+      if (second == nothing && revolver in player)
+      {
+        print "(with the revolver)^";
+        second = revolver;
+      }
+      if (second == nothing && rifle in player)
+      {
+        print "(with the rifle)^";
+        second = rifle;
+      }
+      if (second == nothing)
+        "You have no weapon.";
+      if (second ~= revolver or rifle)
+        "You can't shoot anything with ", (ThatOrThose)second, ".";
+      if (sign has general)
+        "You've already shot it once and splintered the wood. There's no point shooting it again and wasting bullets.";
+      if (second.number == 0)
+        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
+      second.number--;
+      give sign general;
+      "BANG! You shoot the sign and splinter the wood. Feel better now? In retrospect, that was probably a bad idea, as you're advertising your presence to the bandits if they're in the vicinity.";
+  ],
+has static;
+
+!========================================
+! Room 2: Entrance to Village
+!========================================
+Object room02 "Entrance to Village"
+with
+  description "You're in front of a stone archway that marks the entrance of a village to the north. The desert extends east under a relentless sun.",
+  n_to room03,
+  e_to room01,
+has light;
+
+!----------------------------------------
+! Stone archway
+!----------------------------------------
+Object archway "stone archway" room02
+with
+  name 'stone' 'arch' 'archway' 'entrance',
+  description "The stone archway looks rather old, but it serves its purpose well. Beyond the arch to the north, you can see the village.",
+has scenery;
+
+!----------------------------------------
+! Village (floating object)
+!----------------------------------------
+Object village "village"
+with
+  name 'village',
+  description "This was possibly never a picturesque place, considering its location on the outskirts of a desert, but now it looks as though everything has been looted.",
+  found_in room02 room03 room08 room10 room11 room20,
+has scenery;
+
+!========================================
+! Room 3: Village South
+!========================================
+Object room03 "Village South"
+with
+  description "You're on the south side of the village with buildings to the east and west. Everything around you screams death and destruction. You can see a small square to the north with a church beyond that. If you decide to leave the village, you can do so by going south.",
+  n_to room10,
+  s_to room02,
+  e_to room08,
+  w_to room04,
+has light;
+
+!----------------------------------------
+! Buildings
+!----------------------------------------
+Object "buildings" room03
+with
+  name 'buildings',
+  description "The building to the east has been burnt out. The building to the west has seen better days, but it's still in one piece.",
+has scenery;
+
+!----------------------------------------
+! Village square (floating object)
+!----------------------------------------
+Object square "village square"
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'small' or 'village' or 'square')
+    {
+      i++;
+      if (nw == 'village' && TestScope(village))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description "Despite its small size, the village square was likely a very lively place where the villagers could gather and gossip. Now it looks empty and desolate.",
+  found_in room03 room10 room11 room21,
+has scenery;
+
+!----------------------------------------
+! Church (floating object)
+!----------------------------------------
+Object "church"
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'village' or 'church')
+    {
+      i++;
+      if (nw == 'village' && TestScope(village))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description "The church looks like it was the only building to survive relatively intact. Perhaps the outlaws feared God more than they feared the villagers or the law.",
+  found_in room03 room10 room13 room14,
+has scenery;
+
+!========================================
+! Room 4: Village Inn
+!========================================
+Object room04 "Village Inn"
+with
+  description "The small village inn is very modest. It's old and shabby with just a few tables and chairs, and a kitchen to the south. An exit to the west leads to another room and the east goes back outdoors.",
+  s_to room06,
+  e_to room03,
+  w_to room05,
+  out_to room03,
+has light;
+
+!----------------------------------------
+! Inn
+!----------------------------------------
+Object "inn" room04
+with
+  name 'small' 'village' 'inn' 'tavern',
+  description "You're guessing it's an inn, but it's possibly a tavern. It's hard to tell, as it's empty of any staff or customers.",
+has scenery;
+
+!----------------------------------------
+! Kitchen (floating object)
+!----------------------------------------
+Object kitchen "kitchen"
+with
+  name 'inn^s' 'kitchen',
+  description "You imagine the kitchen being used to prepare simple home-cooked Mexican meals for the customers in the inn, but it's now silent.",
+  found_in room04 room06,
+has scenery;
+
+!----------------------------------------
+! Tables
+!----------------------------------------
+Object tables "tables" room04
+with
+  name 'table' 'tables' 'old' 'wood' 'wooden',
+  description
+  [;
+    print "The tables are made of old wood. They're scratched and worn, but clean and well oiled to prevent them drying out in the heat. If not for the wear, they would not be out of place in a much bigger establishment, such as the hotels and gambling parlours of Tucson. ";
+    <<Search self>>;
+  ],
+has pluralname scenery supporter;
+
+!----------------------------------------
+! Chairs
+!----------------------------------------
+Object seats "chairs" room04
+with
+  name 'chair' 'chairs' 'frame' 'frames',
+  description
+  [;
+    print "Unlike the tables, the chairs are rather shabby and uncomfortable. Most of them are broken and lie on the floor. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Enter:
+      if (verb_word == 'lie')
+        "The chairs aren't suitable for lying on.";
+      if (verb_word == 'stand')
+        "The chairs are for sitting on, not standing on.";
+      "You don't have time to sit around on shabby, broken chairs.";
+    Take:
+      "You don't need them.";
+  ],
+has pluralname scenery supporter;
+
+!========================================
+! Room 5: Bedroom
+!========================================
+Object room05 "Bedroom"
+with
+  description "You're in a bedroom that looks pretty untidy. You can't tell if it was always like this or it's just been messed up by the outlaws. They may well have stayed here overnight. The exit to the east leads back to the inn.",
+  e_to room04,
+  out_to room04,
+has light;
+
+!----------------------------------------
+! Bedroom
+!----------------------------------------
+Object "bedroom" room05
+with
+  name 'bedroom' 'accommodation',
+  description "The bedroom may have served as accommodation for passing travellers.",
+has scenery;
+
+!----------------------------------------
+! Bed
+!----------------------------------------
+Object bed "bed" room05
+with
+  name 'large' 'bed',
+  description
+  [;
+    print "The bed looks very comfy, but it's all messed up and doesn't look like it's been made for days. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Enter:
+      if (verb_word == 'lie')
+        <<Sleep>>;
+      if (verb_word == 'sit')
+        "You sit on the bed to try it. Yep, it sure is comfy, but you have no time to waste sitting around on a strange bed, so you stand up again.";
+      if (verb_word == 'stand')
+        "The bed might be all messed up, but that doesn't mean you can stand on it in your dirty boots.";
+    LookUnder:
+      "Nope, no desperados hiding under there.";
+  ],
+has static supporter;
+
+!----------------------------------------
+! Mirror
+!----------------------------------------
+Object mirror "mirror" room05
+with
+  name 'mirror' 'small' 'beauty' 'glass',
+  description
+  [;
+    print "It's a small beauty mirror";
+    if (mirror hasnt moved)
+      print " hanging on the wall";
+    ". You remember when you were a kid and used to blind your friends by reflecting the sun's rays with a mirror like this, just to see them trip and fall.";
+  ],
+  after
+  [;
+    Drop:
+      print_ret (string)YOU_PLACE_IT_CAREFULLY;
+    Take:
+      if (mirror hasnt moved)
+      {
+        move hole_in_bedroom to room05;
+        "When you take the mirror off the wall, you expose the wooden plug that it was hanging on.";
+      }
+  ]
+has;
+
+!----------------------------------------
+! Small hole in bedroom wall
+!----------------------------------------
+Object hole_in_bedroom "small hole"
+class OpenContainer
+with
+  name 'small' 'hole' 'in' 'wall',
+  description
+  [;
+    print "It's a small hole in the bedroom wall that was exposed when you removed the mirror. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Receive:
+      if (noun ~= plug)
+        print_ret (The)noun, " won't fit in the small hole.";
+  ],
+has container open static;
+
+!----------------------------------------
+! Wooden plug
+!----------------------------------------
+Object plug "wooden plug" hole_in_bedroom
+with
+  name 'wooden' 'plug',
+  description
+  [;
+    print "It's a small wooden plug. It's about the same diameter as a bullet";
+    if (self in hole_in_bedroom or hole_in_sanctuary)
+      print ", but you can't tell how long it is while it's stuck in the hole.";
+    else
+      print " and twice as long.";
+    if (self has general)
+    {
+      print " There's a cord tied to it.";
+      if (lever has general)
+        print " The other end of the cord is tied to the lever.";
+    }
+    "";
+  ],
+  before
+  [;
+    Receive:
+      if (noun == mirror && self in hole_in_bedroom)
+      {
+        remove hole_in_bedroom;
+        move mirror to location;
+        give mirror ~moved;
+        "You hang the mirror back on the plug.";
+      }
+    Take:
+      if (self has general)
+        "You'll need to untie the cord before taking the plug out of the hole.";
+  ],
+has;
+
+!========================================
+! Room 6: Kitchen
+!========================================
+Object room06 "Kitchen"
+with
+  description 
+  [;
+    print "The inn's kitchen is a small room, the most notable furniture being a large table placed right slap bang in the middle of the floor. ";
+    if (trapdoor has absent)
+      print "You notice scratches on the floor beside the table. ";
+    else 
+      print "Now that you pushed the table, you can see a trapdoor on the floor. ";
+    "The shelves on the south wall, opposite the exit from the kitchen, look like they've been emptied by the desperados.";
+  ],
+  n_to room04,
+  d_to
+  [;
+    if (table hasnt general)
+      "You don't see any exit that leads downward.";
+    return trapdoor;
+  ],
+  out_to room04,
+has light;
+
+!----------------------------------------
+! Scratches
+!----------------------------------------
+Object scratches "scratches" room06
+with
+  name 'floor' 'scratches',
+  description "The scratches have clearly been left by someone moving the table.",
+has scenery;
+
+!----------------------------------------
+! Shelves on wall
+!----------------------------------------
+Object "shelves" room06
+with
+  name 'shelf' 'shelves' 'wall' 'walls',
+  description
+  [;
+    print "The shelves line the south wall. They look like they've been looted by the desperados. ";
+    <<Search self>>;
+  ],
+has scenery;
+
+!----------------------------------------
+! Table
+!----------------------------------------
+Object table "table" room06
+with
+  name 'table' 'large' 'worktop',
+  description
+  [;
+    print "The table is more like a worktop that's used for preparing food. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    LookUnder:
+      if (trapdoor has absent)
+        "There's something under the table, but you can't make out what it is.";
+    Pull, Push:
+      print "You move the table to ";
+      if (self hasnt general)
+      {
+        give self general;
+        give trapdoor ~absent;
+        MoveFloatingObjects();
+        "reveal a trapdoor.";
+      }
+      else
+      {
+        give self ~general;
+        give trapdoor absent;
+        MoveFloatingObjects();
+        "cover the trapdoor.";
+      }
+  ],
+has scenery supporter;
+
+!----------------------------------------
+! Cupboard
+!----------------------------------------
+Object cupboard "cupboard" room06
+class OpenableContainer
+with
+  name 'cupboard',
+  description
+  [;
+    print "It's a somewhat battered cupboard, just like the other furniture in the kitchen. ";
+    <<Search self>>;
+  ],
+has container openable static;
+
+!----------------------------------------
+! Knife
+!----------------------------------------
+Object knife "knife" cupboard
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'big' or 'kitchen' or 'knife')
+    {
+      i++;
+      if (nw == 'kitchen' && TestScope(kitchen))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description "It's a big kitchen knife that's seen better days. Even so, it's very sharp, so handle it carefully.",
+has;
+
+!----------------------------------------
+! Trapdoor (floating object)
+!----------------------------------------
+Object trapdoor "trapdoor"
+with
+  name 'trapdoor' 'trap' 'door',
+  description
+  [;
+    print "It's a trapdoor in the ";
+    if (self in room06)
+      print "floor";
+    else
+      print "ceiling";
+    print " that's currently ";
+    if (self has open)
+      "open.";
+    else
+      "closed.";
+  ],
+  door_dir
+  [;
+    if (self in room06)
+      return d_to;
+    else
+      return u_to;
+  ],
+  door_to
+  [;
+    if (self in room06)
+      return room07;
+    else
+      return room06;
+  ],
+  after
+  [;
+    Close:
+      give room07 ~light;
+    Open:
+      give self moved;
+      give room07 light;
+  ],
+  found_in room06 room07,
+has absent door openable scenery;
+
+!========================================
+! Room 7: Cellar
+!========================================
+Object room07 "Cellar"
+with
+  description "You're inside a narrow cellar with a very low ceiling. A faint light filters in from the trapdoor above, where you lowered yourself to the floor.",
+  u_to trapdoor,
+  out_to trapdoor,
+has;
+
+!----------------------------------------
+! Cellar
+!----------------------------------------
+Object "cellar" room07
+with
+  name 'narrow' 'cellar',
+  description "The cellar is a cool respite from the desert heat outside.",
+has scenery;
+
+!----------------------------------------
+! Ceiling
+!----------------------------------------
+Object "ceiling" room07
+with
+  name 'low' 'ceiling',
+  description "It's very low. You have to duck to avoid hitting your head.",
+has scenery;
+
+!----------------------------------------
+! Flask of tequila
+!----------------------------------------
+Object tequila "flask of tequila" room07
+with
+  name 'half-empty' 'half' 'empty' 'flask' 'of' 'tequila',
+  description "It's a half-empty flask of tequila.",
+  before
+  [;
+    Drink:
+      "You came here to search for those bandits. They are armed and dangerous, so you'd better stay sober.";
+  ],
+  after
+  [;
+    Drop:
+      print_ret (string)YOU_PLACE_IT_CAREFULLY;
+  ],
+has;
+
+!----------------------------------------
+! Bottle of sarsaparilla
+!----------------------------------------
+Object sarsaparilla "bottle of sarsaparilla" room07
+with
+  name 'bottle' 'of' 'sarsaparilla',
+  description "It's a bottle of soft drink that's made from the sarsaparilla vine. It's very popular in Mexico.",
+  before
+  [;
+    Drink:
+      "You've never really liked the earthy taste of sarsaparilla. Root beer is more to your liking.";
+  ],
+  after
+  [;
+    Drop:
+      print_ret (string)YOU_PLACE_IT_CAREFULLY;
+  ],
+has;
+
+!========================================
+! Room 8: Porch of House
+!========================================
+Object room08 "Porch of House"
+with
+  description "You're on the porch of a modest house located on the east side of the village. The house has clearly been burned down, no doubt a destructive act by those murderous outlaws. The house is now silent and a disgusting odour emanates from within. You can easily enter the house to the east if you want to investigate further.",
+  e_to room09,
+  w_to room03,
+  in_to room09,
+  before
+  [;
+    Smell:
+      print_ret (string)SMELL_IS_REVOLTING;
+  ],
+has light;
+
+!----------------------------------------
+! Porch
+!----------------------------------------
+Object "porch" room08
+with
+  name 'porch',
+  description "It's a wooden porch in front of the house, but it's badly burnt. You can step down from the porch to the west.",
+has scenery;
+
+!----------------------------------------
+! House
+!----------------------------------------
+Object "house" room08
+with
+  name 'modest' 'house',
+  description "The house looks like it's been burnt down by the desperados, perhaps just for the fun of it. You feel sorry for the owners.",
+has scenery;
+
+!----------------------------------------
+! Burnt rocking chair
+!----------------------------------------
+Object burnt_chair "burnt rocking chair" room08
+class OpenContainer
+with
+  name 'old' 'burnt' 'rocking' 'chair',
+  description
+  [;
+    print "The chair resembles the rocking chair that your mother used to sit on when knitting your clothes, except that it's now just a useless piece of burnt wood. It looks like it was once covered in maroon velour, but only traces of the burnt material remain. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Climb, Enter, Go:
+      "The chair is burnt to a crisp. It would more than likely collapse if you try to get on it.";
+    Take:
+      "What on Earth would you do with a burnt chair?";
+  ],
+has enterable static supporter;
+
+!========================================
+! Room 9: Burnt-out House
+!========================================
+Object room09 "Burnt-out House"
+with
+  description "You're inside the remnants of the burnt-out house. The roof has collapsed and the blackened walls are all that is left after the fire. The most disturbing of all is what you find in the rubble. Ramirez's gang has once again vented its barbarity on innocent people. When you've finished surveying the damage, you can leave to the west.",
+  w_to room08,
+  out_to room08,
+  before
+  [;
+    Smell:
+      print_ret (string)SMELL_IS_REVOLTING;
+  ],
+has light;
+
+!----------------------------------------
+! Burnt-out house
+!----------------------------------------
+Object "house" room09
+with
+  name 'remnants' 'burnt-out' 'burned-out' 'house' 'rooms',
+  description "The house has been gutted by a fire. There is nothing that has escaped the flames and the smell of smoke is still quite strong.",
+has scenery;
+
+!----------------------------------------
+! Rubble
+!----------------------------------------
+Object "rubble" room09
+with
+  name 'rubble' 'debris' 'damage' 'blackened' 'timber' 'remains' 'mud-daubed' 'roof' 'walls' 'dust',
+  description "There's nothing but blackened timber and dust from the remains of the mud-daubed roof.",
+has scenery;
+
+!----------------------------------------
+! Burned bodies
+!----------------------------------------
+Object corpses "burnt bodies" room09
+class Body
+with
+  name 'burnt' 'burned' 'bodies' 'corpses' 'mother' 'father' 'two' 'children',
+  description "The bodies are so burnt that you can't even make out their gender. You're guessing that it's probably a mother, father and their two children. It's another testament to the horror inflicted by Ramirez and his gang.",
+  before
+  [;
+    Search:
+      "There's nothing to search here.";
+  ],
+has animate pluralname;
+
+!========================================
+! Room 10: Village Square
+!========================================
+Object room10 "Village Square"
+with
+  description "You're in the village square. This would have been a lively meeting place before the bandits came, but now it's quiet. You can leave the square to the east and west. Otherwise, the village church beckons you to the north and more of the village is to the south.",
+  n_to room13,
+  s_to room03,
+  e_to room21,
+  w_to room11,
+  before
+  [;
+    Go:
+      if (self.state ~= 0 && selected_direction == n_to or s_to or w_to)
+        print_ret (string)DONT_GO_WANDERING_OFF;
+  ],
+  daemon
+  [;
+    switch (self.state)
+    {
+      0:if (location == room11)
+        {
+          give brave_boy ~absent;
+          MoveFloatingObjects();
+          self.state++;
+          "^The boy from the bell tower runs down the road from the west. You notice that he's still carrying the bottle that you gave him earlier, but there's now something slithering around inside it. What's he up to?^^The boy points to the west, where you see a cloud of dust indicating that something, or rather someone, is approaching fast.";
+        }
+      1:if (location ~= room21)
+          "^The boy pulls you and gestures to the east. ~Vamos, gringo. Vamos.~";
+        self.state++;
+        "^The boy says, ~Sentar~, and gestures to you to sit on the rocking chair.";
+      2:if (player notin rocking_chair)
+          "^The boy says, ~Sentar~, and gestures to you to sit on the rocking chair.";
+        self.state++;
+        move mirror to limbo;
+        if (mirror in player)
+          print "^The boy takes the mirror from you.";
+        else
+          print "^The boy shows you the mirror from the inn.";
+        " What on Earth is he up to?";
+      3:if (location == room21)
+        {
+          self.state++;
+          move snake_bottle to player;
+          give brave_boy absent;
+          MoveFloatingObjects();
+          "^The boy gives you a bottle containing a live (and very agitated) rattlesnake and says, ~Lanzale esto a los forajidos~, followed by a throwing gesture. He then runs off to the west. The boy must have a plan. You have no idea what it is, but you feel you can trust him.";
+        }
+      4:self.state++;
+        move desperados to room21;
+        print "^You hear a rumbling of hooves. The band of desperados is getting much closer. You ";
+        if (sombrero has worn)
+          "hope your disguise is enough to fool them when they arrive.";
+        else
+          "wonder whether you should be wearing a disguise when the desperados arrive.";
+      5:self.state++;
+        print "^The desperados arrive at the village square in a cloud of dust. As the dust settles, one of them sees you";
+        if (sombrero has worn)
+          " and gives you a wave. ~Oye, Pablo, unete a nosotros para tomar una copa.~ Despite the heat, you feel cold sweat running down your back, but you hold still.";
+        StopDaemon(self);
+        deadflag = 1;
+        ". ~Oye, hay un gringo en el porche.~ Damn, he's recognised you. You should have worn a disguise. Before you have a chance to react, the desperado draws his gun and shoots you.^^The legend of Kenneth Johnson is over.";
+      6:self.state++;
+        "^All of a sudden, the boy comes out of hiding and shines the mirror into the eyes of the bandits. One of them is blinded by the light and suddenly swerves into the horse of one of his compatriots. The second man is offended by this seeming act of violence and starts a fight. Within moments, the desperados are in disarray. Now is the time to act!";
+      7:self.state++;
+        "^The bandits don't pay attention to you, as they're still squabbling amongst themselves. Do something now!";
+      8:self.state++;
+        "^You still have the bottle, don't you? What about throwing it at the bandits?";
+      9:self.state++;
+        StopDaemon(self);
+        deadflag = 1;
+        "^After the initial brawl, the desperados manage to contain the situation. When they realise that they've been tricked, they start firing haphazardly and kill you without hesitation.^^The legend of Kenneth Johnson is over.";
+      }
+  ],
+  state 0,
+has light;
+
+!----------------------------------------
+! Dead outlaw
+!----------------------------------------
+Object dead_outlaw "dead outlaw"
+with
+  article THE,
+  name 'dead' 'outlaw' 'body' 'corpse' 'man',
+  description
+  [;
+    print "It's the corpse of the outlaw you shot from the bell tower. He's now paid for his sins.";
+    if (self hasnt general)
+      print " You should search him to see if he has anything important on him.";
+    "";
+  ],
+  before
+  [ destination;
+    Hide:
+      if (self in room12)
+        "He's well hidden in here, although you might want to lock the door, just in case.";
+      "Try dragging him into one of the villas.";
+    Pull:
+      "You can drag him, but you'll need to give me a direction, e.g. DRAG BODY TO NORTH.";
+    PullDir:
+      if (location == room10 && selected_direction == n_to or e_to)
+      {
+        print "You can't get him up the ";
+        if (selected_direction == n_to)
+          "church steps.";
+        else
+          "porch steps.";
+      }
+      if (location == room11 && selected_direction == n_to)
+      {
+        if (front_door hasnt open)
+          "The door is closed.";
+        move self to room12;
+        StartDaemon(room10);
+        <<Go FAKE_N_OBJ>>;
+      }
+      if (location == room03 && selected_direction == e_to or w_to)
+      {
+        print "You can't get him up the ";
+        if (selected_direction == e_to)
+          "porch steps.";
+        else
+          "steps to the inn.";
+      }
+      if (location == room12 && selected_direction == s_to)
+        "It took a lot of effort to drag the dead outlaw in here to hide him, so don't go dragging him back out again.";
+      destination = location.(direction_properties_array->selected_direction_index);
+      if (destination ofclass Object)
+        move self to destination;
+      <<Go (DirPropToFakeObj(selected_direction))>>;
+    Push, PushDir:
+      "He's too fat and awkward to push, but you could pull him or drag him.";
+    Search:
+      if (self has general)
+        "You've already searched the body, but didn't find anything.";
+      give self general;
+      "You search the body, but don't find anything noteworthy. You should now hide him in case the other desperados return. Perhaps you could drag him into one of the villas.";
+  ],
+has animate;
+
+!----------------------------------------
+! Large sombrero
+!----------------------------------------
+Object sombrero "large sombrero"
+with
+  name 'large' 'sombrero' 'hat',
+  description
+  [;
+    print "It's the sombrero the outlaw was wearing. ";
+    if (self hasnt worn)
+      print "You should put it on as a";
+    else
+      print "It makes a good";
+    " disguise, in case the others come back.";
+  ],
+  before
+  [;
+    Search:
+      "Were you expecting to pull a rabbit out of the hat?";
+    Disrobe:
+      if (self has worn)
+        "Don't take it off, it makes a good disguise!";
+  ],
+has clothing;
+
+!----------------------------------------
+! Brave boy
+!----------------------------------------
+Object brave_boy "boy"
+with
+  name 'boy',
+  description "It's the boy from the bell tower, but he no longer looks scared. In fact, his face shows strength and determination.",
+  life
+  [;
+    Ask, Answer, Talk:
+      "The desperados are coming. This is no time for chit chat, just follow his instructions.";
+  ],
+  found_in
+  [;
+    rtrue;
+  ],
+has absent animate transparent;
+
+!----------------------------------------
+! Bottle with live rattlesnake
+!----------------------------------------
+Object snake_bottle "bottle with a live rattlesnake" brave_boy
+with
+  name 'bottle' 'live' 'rattlesnake' 'snake' 'rattler',
+  description "It's the bottle you gave the boy when you were in the bell tower. It now contains a live rattlesnake and the rattlesnake doesn't look too happy.",
+  before
+  [;
+    if (self in brave_boy && action ~= ##Examine or ##Take)
+      "You'll have to get the bottle from the boy before you can do anything with it.";
+    Drink:
+      "Are you crazy?";
+    Drop:
+      "Don't drop it. You'll need it soon.";
+    Open:
+      "You have no idea what that rattlesnake will do, so you'd better leave it as is.";
+  ],
+has;
+
+!----------------------------------------
+! Desperados
+!----------------------------------------
+Object desperados "desperados"
+with
+  article THE,
+  name 'desperados' 'bandits' 'outlaws' 'horses' 'manolo' 'ramirez',
+  description "It's Ramirez and his gang. They're on horseback and fully armed, but they will soon meet their fate.",
+  life
+  [;
+    Attack:
+      "If you open fire without creating a diversion first, you'll be on a cloud singing with the angels before you know it.";
+    ThrowAt:
+      if (noun ~= snake_bottle)
+        "I don't think you should throw ", (the)noun, " at the desperados or they'll know you're not one of them.";
+      if (room10.state < 7)
+        "Not yet. Be patient.";
+      deadflag = 2;
+      "You jump out of the rocking chair and throw the bottle at the desperados. It lands among the horses, shatters into pieces and the rattlesnake bursts out of it and bites at the horses' legs. The horses rear and most of the bandits are dismounted.^^This was the opportunity you were waiting for. You fire your rifle at the bandits, killing Manolo Ramirez first, then his minions. When the rifle is empty, you draw your revolver and empty it as well. This band of murderers will not harm anyone ever again.^^When everything is quiet, the brave boy emerges from his hiding place and frisks Ramirez's pockets. He seemed to know what he was looking for, as he retrieves a big key and runs towards the villa behind you. He unlocks the door and lets the villagers out. You had no idea they were even in there.^^The villagers quickly spread throughout the village to survey the situation and grieve for their dead friends. The survivors are happy to be alive and free of this nightmare. They greet you as their hero. You try to explain that it was all the brave boy's idea, but they don't understand you. You were the one with the guns and you were the one that shot all the desperados, so you are their hero. The boy just gives you a big smile. It seems that he agrees with the rest of the villagers.^^And so, the legend of Kenneth Johnson continues.";
+  ],
+  before
+  [;
+    Shoot:
+      "You're outnumbered. If you open fire without creating a diversion first, you'll be on a cloud singing with the angels before you know it.";
+  ],
+has animate pluralname;
+
+!========================================
+! Room 11: Road out of Village
+!========================================
+Object room11 "Road out of Village"
+with
+  description "You're on a road that leads out of the village towards the west. The front door of a small villa faces the road to the north and the village square is back to the east. Fresh hoof prints attract your attention.",
+  n_to front_door,
+  e_to room10,
+  w_to TOO_FAR_TO_GO_ON_FOOT,
+  before
+  [;
+    Go:
+      if (room10.state ~= 0 && selected_direction == n_to or w_to)
+        print_ret (string)DONT_GO_WANDERING_OFF;
+    Smell:
+      print_ret (string)SMELL_ROTTING_FLESH;
+  ],
+has light;
+
+!----------------------------------------
+! Road
+!----------------------------------------
+Object "road" room11
+with
+  name 'road',
+  description "The road is dry and dusty from the parched sun. You notice some tracks from horses' hooves heading towards the west.",
+has scenery;
+
+!----------------------------------------
+! Small villa (floating object)
+!----------------------------------------
+Object "villa"
+with
+  name 'small' 'villa',
+  description
+  [;
+    print "It's a small villa ";
+    if (self in room11)
+      print "on the north side of the road. It's ";
+    "made from mud bricks coated in white lime.";
+  ],
+  found_in room11 room12,
+has scenery;
+
+!----------------------------------------
+! Front door (floating object)
+!----------------------------------------
+Object front_door "front door"
+with
+  name 'front' 'door',
+  description
+  [;
+    print "It's the front door to the villa. It's currently ";
+    if (self has open)
+      "open.";
+    else
+      "closed.";
+  ],
+  door_dir
+  [;
+    if (self in room11)
+      return n_to;
+    else
+      return s_to;
+  ],
+  door_to
+  [;
+    if (self in room11)
+      return room12;
+    else
+      return room11;
+  ],
+  with_key key,
+  found_in room11 room12,
+has door lockable locked openable scenery;
+
+!----------------------------------------
+! Dead woman
+!----------------------------------------
+Object woman "dead woman" room11
+class Body
+with
+  name 'dead' 'woman' 'old' 'woman^s' 'lady' 'lady^s' 'body' 'corpse',
+  description
+  [;
+    print "It's the corpse of an old lady dressed in simple clothing. Those bandits don't show mercy on anyone! You promise not to show any mercy on them, either. ";
+    if (cloth in nothing)
+      "You should do something to give some dignity back to the poor woman.";
+    else
+      "Her face is now covered with a cotton handkerchief. Poor lady. You'll find those desperados and make them pay.";
+  ],
+  before
+  [;
+    Search:
+      if (vultures in location)
+        "You can't get to the body while the vultures are feeding on it.";
+      print "You search the old lady's pockets ";
+      if (key in nothing)
+      {
+        move key to location;
+        "and something falls out. You wonder if there's anything else is in there.";
+      }
+      if (cloth in nothing)
+      {
+        move cloth to location;
+        "and feel a piece of cloth. When you pull it out, you see that it's a cotton handkerchief, so you place it over the woman's face.";
+      }
+      "again, but don't find anything else.";
+  ],
+has animate female;
+
+!----------------------------------------
+! Cotton handkerchief
+!----------------------------------------
+Object cloth "cotton handkerchief"
+with
+  name 'piece' 'of' 'cloth' 'cotton' 'handkerchief',
+  description "It's the cotton handkerchief you found in the old woman's pocket. It now covers her face.",
+  before
+  [;
+    Take:
+      "You placed the cotton handkerchief on the old woman's face to give her some dignity and there it shall stay, at least until you can bury her.";
+  ],
+has static;
+
+!----------------------------------------
+! Small key
+!----------------------------------------
+Object key "small key"
+with
+  name 'small' 'metal' 'key',
+  description
+  [;
+    print "It's a small metal key.";
+    if (front_door has general)
+      print " You now know that it opens the door to the villa.";
+    "";
+  ],
+has;
+
+!----------------------------------------
+! Vultures
+!----------------------------------------
+Object vultures "vultures" room11
+with
+  name 'vulture' 'vultures' 'flock' 'birds',
+  description "It's a flock of noisy vultures that are feeding on the corpse of the old woman. They pay you no attention, as they're busy nibbling at the body.",
+  before
+  [;
+    Shoot:
+      if (second == nothing && rifle in player && revolver in player)
+        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT VULTURES WITH REVOLVER.";
+      if (second == nothing && revolver in player)
+      {
+        print "(with the revolver)^";
+        second = revolver;
+      }
+      if (second == nothing && rifle in player)
+      {
+        print "(with the rifle)^";
+        second = rifle;
+      }
+      if (second == nothing)
+        "You have no weapon.";
+      if (second ~= revolver or rifle)
+        "You can't shoot anything with ", (ThatOrThose)second, ".";
+      if (second.number == 0)
+        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
+      second.number--;
+      move vultures to limbo;
+      move feathers to location;
+      "You aim ", (the)second, " into the air to avoid hitting the old woman's body. The poor lady is already dead, but your respect for human beings comes before everything else.^^You pull the trigger. BLAM! The vultures are scared off by the noise and take flight, leaving only feathers behind.";
+  ],
+has animate neuter pluralname;
+
+!----------------------------------------
+! Feathers
+!----------------------------------------
+Object feathers "feathers"
+with
+  name 'feathers',
+  description "It's a bunch of feathers left by the flock of vultures when you scared them away.",
+  after
+  [;
+    Take:
+      if (self hasnt moved)
+        "If you insist, but they're unlikely to help you find the outlaws.";
+  ],
+has pluralname;
+
+!========================================
+! Room 12: Inside Villa
+!========================================
+Object room12 "Inside Villa"
+with
+  description "The villa is quite dark inside. From what you can see, it looks quite modest with minimal furnishings. It doesn't appear to have been plundered by the desperados. Maybe the locked door kept them out or they weren't interested in such a humble abode. At any rate, you don't have time to look around, so you should leave through the front door to the south.",
+  s_to front_door,
+has light;
+
+!========================================
+! Room 13: Inside Church
+!========================================
+Object room13 "Inside Church"
+with
+  description "You're inside the church. The central aisle runs from north to south with rows of pews located on each side of the aisle. You can either go north towards the front of the church or south to return to the village square.",
+  n_to room14,
+  s_to
+  [;
+    if (outlaw in room20)
+      "You can't venture into the village square while the outlaw is wandering around. You'll have to take him out first.";
+    else
+      return room10;
+  ],
+  e_to NOTHING_BUT_PEWS,
+  w_to NOTHING_BUT_PEWS,
+has light;
+
+!----------------------------------------
+! Aisle (floating object)
+!----------------------------------------
+Object "aisle"
+with
+  article AN,
+  name 'central' 'aisle' 'nave',
+  description "The aisle runs down the central part of the church separating the pews on each side.",
+  found_in room13 room14,
+has scenery;
+
+!----------------------------------------
+! Pews (floating object)
+!----------------------------------------
+Object pews "pews"
+with
+  name 'row' 'rows' 'of' 'pew' 'pews' 'seat' 'seats',
+  description
+  [;
+    print "The pews are located on each side of the central aisle that goes down the centre of the nave. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Enter:
+      if (verb_word == 'lie')
+        "Surely you can find somewhere more comfortable than a pew if you want to lie down.";
+      if (verb_word == 'stand')
+        "You shouldn't put your dirty feet on the pews, as other people will want to sit on them after you've taken care of those outlaws.";
+      "You sit on one of the pews, bow your head and say a brief prayer, then stand up again.";
+    LookUnder:
+      "It's not unusual to find a dropped prayer book under the pews, but not today.";
+  ],
+  found_in room13 room14,
+has pluralname scenery supporter;
+
+!========================================
+! Room 14: Middle of Church
+!========================================
+Object room14 "Middle of Church"
+with
+  description "You're in the middle of the two rows of pews facing the altar located to the north. The church continues to the south or you can enter the confessional behind the pews to the east.",
+  n_to room16,
+  s_to room13,
+  e_to room15,
+  w_to NOTHING_BUT_PEWS,
+  in_to room15,
+has light;
+
+!----------------------------------------
+! Altar (floating object)
+!----------------------------------------
+Object altar "altar"
+class OpenContainer
+with
+  article AN,
+  name 'altar' 'small' 'stained' 'wood' 'cross' 'lighter' 'coloured' 'colored',
+  description
+  [;
+    print "It's a small altar made of stained wood inlaid with a cross in a lighter-coloured wood. ";
+    <<Search self>>;
+  ],
+  found_in room14 room16 room18,
+has scenery supporter;
+
+!----------------------------------------
+! Confessional (floating object)
+!----------------------------------------
+Object "confessional"
+with
+  name 'confessional' 'small' 'wooden' 'structure' 'dark' 'timber' 'curtained' 'compartment' 'latticed' 'booth',
+  description "It's a small wooden structure made from very dark timber. It has a curtained compartment, where the priest sits, and a latticed booth where the penitent speaks to the priest.",
+  before
+  [;
+    Enter:
+      if (self in room14)
+        <<Go FAKE_E_OBJ>>;
+    Exit:
+      if (self in room15)
+        <<Go FAKE_W_OBJ>>;
+  ],
+  found_in room14 room15,
+has scenery;
+
+!========================================
+! Room 15: Inside Confessional
+!========================================
+Object room15 "Inside Confessional"
+with
+  description "You usually breathe an almost mystical atmosphere inside a confessional, perhaps because of the scent of liturgical incense. In this case, though, the smell is disgusting. The wooden seat is placed in front of the small window, closed by a metal mesh.",
+  w_to room14,
+  out_to room14,
+  before
+  [;
+    Smell:
+      print_ret (string)SMELL_ROTTING_FLESH;
+  ],
+has light;
+
+!----------------------------------------
+! Seat
+!----------------------------------------
+Object seat "seat" room15
+with
+  name 'wooden' 'seat' 'board',
+  description
+  [;
+    print "It's really no more than a simple wooden board. It looks like sinners are not supposed to be seated on comfy chairs while confessing their sins.^";
+  ],
+  before
+  [;
+    Enter:
+      if (verb_word == 'lie')
+        "The seat isn't long enough to lie on.";
+      if (verb_word == 'stand')
+        "The seat is for sitting on, not standing on.";
+      "You don't have time to sit around.";
+    Take:
+      "You don't need to bother about it.";
+  ],
+has scenery supporter;
+
+!----------------------------------------
+! Window
+!----------------------------------------
+Object window "window" room15
+with
+  name 'small' 'metal' 'mesh' 'window',
+  before "The penitent speaks to the priest through this window. There's nothing special about it. It can't be opened and the mesh can't be taken.",
+has scenery;
+
+!----------------------------------------
+! Dead man
+!----------------------------------------
+Object man "dead man" room15
+class Body
+with
+  name 'dead' 'man' 'man^s' 'helper' 'body' 'corpse' 'pocket' 'pockets',
+  description "This man looks like he may have been the priest's helper. If so, he would have been one of the hardest-working people in the village. Unfortunately, his working days are over, as he's crumpled in a lifeless heap on the floor.",
+  before
+  [;
+    Search:
+      print "You search the man's pockets ";
+      if (bullets in nothing)
+      {
+        move bullets to location;
+        "and find some bullets. You wonder why a priest's helper would carry bullets around, but you're so glad he did. Someone is protecting you from above.";
+      }
+      "again, but don't find anything else of interest.";
+  ],
+has animate;
+
+!----------------------------------------
+! Bullets
+!----------------------------------------
+Object bullets "bullets"
+with
+  name 'bullets',
+  description "They're rifle bullets. There's a dozen of them.",
+  before
+  [;
+    Insert:
+      if (second == revolver or rifle)
+        <<Load second self>>;
+  ],
+has pluralname;
+
+!========================================
+! Room 16: In Front of Altar
+!========================================
+Object room16 "In Front of Altar"
+with
+  description "You find yourself standing in front of the altar. From here, you can go north to the sanctuary behind the altar, east to the sacristy or south to the middle of the church.",
+  n_to room18,
+  s_to room14,
+  e_to room17,
+has light;
+
+!========================================
+! Room 17: Sacristy
+!========================================
+Object room17 "Sacristy"
+with
+  description "This is a small room used as a sacristy, where the clergy prepare for services. It's also used as a storage space, but it's almost empty, apart from a long rope hanging from the ceiling. The exit to the west leads back to the altar.",
+  w_to room16,
+  u_to
+  [;
+    if (ladder in self)
+      return room19;
+  ],
+  out_to room16,
+has light;
+
+!----------------------------------------
+! Sacristy
+!----------------------------------------
+Object "sacristy" room17
+with
+  name 'sacristy' 'room',
+  description "It's a small room, to the east of the altar, where sacred objects, vestments and liturgical items are normally stored. Anything of value appears to have been taken by the bandits.",
+has scenery;
+
+!----------------------------------------
+! Ceiling
+!----------------------------------------
+Object "ceiling" room17
+with
+  name 'ceiling' 'trapdoor' 'outline',
+  description
+  [;
+    print "You can see an ";
+    if (ladder notin location)
+      "outline in the ceiling that looks like a trapdoor.";
+    else
+      "opening in the ceiling with an open trapdoor and a ladder lowered from it to the floor.";
+  ],
+  before
+  [;
+    Open:
+      print "The trapdoor in the ceiling is ";
+      if (ladder in location)
+        "already open.";
+      else
+        "out of your reach. It's times like this that you need a ladder.";
+  ],
+has scenery;
+
+!----------------------------------------
+! Opening (floating object)
+!----------------------------------------
+Object opening "opening"
+with
+  name 'opening' 'mechanism',
+  description
+  [;
+    print "There's an opening in the ";
+    if (self in room17)
+      print "ceiling";
+    else
+      print "floor";
+    print " exposed by the open trapdoor. The mechanism on ";
+    if (self in room17)
+      print "the other";
+    else
+      print "this";
+    " side of the opening controls the raising and lowering of the ladder.";
+  ],
+  found_in room17 room19,
+has absent scenery;
+
+!----------------------------------------
+! Wooden ladder (floating object)
+!----------------------------------------
+Object ladder "wooden ladder"
+with
+  name 'old' 'wooden' 'ladder',
+  description
+  [;
+    print "It's an old wooden ladder that goes through an opening in the ";
+    if (self in room17)
+      print "ceiling";
+    else
+      print "floor";
+    ". It's operated by the lever behind the altar.";
+  ],
+  before
+  [;
+    Climb, Enter:
+      if (self in room17)
+        <<Go FAKE_U_OBJ>>;
+      else
+        <<Go FAKE_D_OBJ>>;
+    Take:
+      "You can't. It's attached to some sort of mechanism beside the trapdoor.";
+  ],
+  found_in room17 room19,
+has absent static;
+
+!----------------------------------------
+! Long rope (floating object)
+!----------------------------------------
+Object long_rope "long rope"
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'long' or 'rope')
+    {
+      i++;
+      if (nw == 'rope' && TestScope(short_rope))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description "It's a thick and robust rope used to ring the belfry's bell.",
+  before
+  [;
+    Climb:
+      "The rope is for ringing the bell. It's not suitable for climbing.";
+    Cut:
+      if (self has general)
+        "You've already cut a short length from the end of the long rope. You don't need any more.";
+      if (second == nothing && knife in player)
+      {
+        print "(with the knife)^";
+        second = knife;
+      }
+      if (second == nothing)
+        "You'll have to tell me what to cut it with.";
+      if (second ~= knife)
+        "You'll need something sharper than ", (a)second, ".";
+      give self general;
+      move short_rope to location;
+      "You reach as high as you can and cut a short length of rope from the end of the long rope and it falls to the floor.";
+    Pull:
+      if (self has general && location == room17)
+        "Now that you've cut the rope, the remaining part is out of your reach.";
+      else
+        "You'd better not, unless you want to signal your position to those murderers.";
+    Push:
+      "The rope can only be pulled.";
+    Take:
+      if (self has general && location == room17)
+        "Now that you've cut the rope, the remaining part is out of your reach.";
+      else
+        "You can't. It's attached to the bell at the top of the bell tower.";
+  ],
+  found_in room17 room19 room20,
+has static;
+
+!----------------------------------------
+! Short rope
+!----------------------------------------
+Object short_rope "short rope"
+with
+  name 'short' 'length' 'piece' 'of' 'rope',
+  description
+  [;
+    print "It's the short length of rope that you cut from the end of the long rope.";
+    if (self has general)
+      print " It's now quite frayed and useless as a piece of rope since you unravelled it.";
+    "";
+  ],
+  before
+  [;
+    Tie:
+      print "The rope is too thick to tie to anything. You could try ";
+      if (self hasnt general)
+        print "unravelling it to get a single strand.";
+      else
+        print "using the cord that you unravelled from the rope earlier.";
+      " You'd be able to tie that.";
+    Unravel:
+      if (self has general)
+        "You've already unravelled it and made quite a mess of the rope in the process.";
+      give self general;
+      move cord to location;
+      "You try unravelling the rope by twisting it in the opposite direction to which the individual strands are laid. You make quite a mess of it, but you eventually end up with a single cord that falls to the ground.";
+  ],
+has;
+
+!----------------------------------------
+! Cord
+!----------------------------------------
+Object cord "cord"
+with
+  name 'cord' 'thin' 'strand',
+  description
+  [;
+    print "It's a thin strand from the rope that you unravelled.";
+    if (lever has general)
+    {
+      print " One end of the cord is tied to the lever.";
+      if (plug has general)
+        print " The other end of the cord is tied to the plug.";
+    }
+    else
+      if (plug has general)
+        print " One end of the cord is tied to the plug.";
+    "";
+  ],
+  before
+  [;
+    Cut:
+      if (lever has general || plug has general)
+        "There's no need to cut it, just untie it.";
+      else
+        "If you cut the cord any shorter, it'll be useless to you, so leave it as is.";
+    Take:
+      if (lever has general || plug has general)
+        "You'll have to untie the cord first.";
+    Tie:
+      if (second == nothing)
+        "You'll have to tell me what to tie it to.";
+      if (second ~= lever or plug)
+        "You can't tie the cord to ", (ThatOrThose)second, ".";
+      if (second has general)
+        "The cord is already tied to ", (the)second, ".";
+      if (second == lever)
+      {
+        give lever general;
+        if (plug hasnt general)
+        {
+          move cord to location;
+          "You tie one end of the cord to the lever.";
+        }
+        give ladder ~absent;
+        give opening ~absent;
+        "You push the lever down and tie the other end of the cord to it. You hear a clattering noise coming from the sacristy, but you'll now be able to investigate it, as the lever is tied tightly in position.";
+      }
+      !We now know that second is the plug
+      if (plug notin hole_in_bedroom or hole_in_sanctuary)
+        "You need to secure the plug first, so that it doesn't move about.";
+      if (plug in hole_in_bedroom)
+        "You've got the right idea, but not here.";
+      !We now know that plug is in the hole in the sanctuary
+      give plug general;
+      if (lever hasnt general)
+      {
+        move cord to location;
+        "You tie one end of the cord to the plug.";
+      }
+      give ladder ~absent;
+      give opening ~absent;
+      "You push the lever down and tie the other end of the cord to the plug. You hear a clattering noise coming from the sacristy, but you'll now be able to investigate it, as the lever is tied tightly in position.";
+    Untie:
+      if (lever hasnt general && plug hasnt general)
+        "The cord isn't tied to anything.";
+      !We now know that cord is tied to lever and/or plug
+      if (lever has general)
+      {
+        give lever ~general;
+        print "You untie the cord from the lever";
+        if (plug has general)
+        {
+          give plug ~general;
+          give ladder absent;
+          give opening absent;
+          print " and the plug and hear a clattering noise coming from the sacristy";
+        }
+        ".";
+      }
+      !We now know that the cord is tied only to the plug
+      give plug ~general;
+      "You untie the cord from the plug.";
+  ],
+has;
+
+!========================================
+! Room 18: Behind Altar
+!========================================
+Object room18 "Behind Altar"
+with
+  description "You're in the sanctuary, which is the area behind the altar. Being a small church, the area feels quite confined. The walls around the sanctuary are made from mud bricks coated with white lime. The main part of the church is to the south.",
+  s_to room16,
+  before
+  [;
+    Hint:
+      if (lever hasnt general && plug hasnt general)
+        "You need to lock the lever in position by tying it to something else with a cord.";
+  ],
+has light;
+
+!----------------------------------------
+! Walls
+!----------------------------------------
+Object wall "walls" room18
+with
+  name 'sanctuary' 'wall' 'walls' 'mud' 'bricks',
+  description "You can see a lever projecting from one of the walls with a hole below it, probably a bullet hole.",
+has scenery;
+
+!----------------------------------------
+! Lever
+!----------------------------------------
+Object lever "lever" room18
+with
+  name 'short' 'lever',
+  description
+  [;
+    print "It's a short lever, somewhat like those foot pedals you've seen on the upright pianos back in the bar rooms of Tucson.";
+    if (self has general)
+    {
+      print " There's a cord tied to it.";
+      if (plug has general)
+        print " The other end of the cord is tied to the plug.";
+    }
+    "";
+  ],
+  before
+  [;
+    Pull:
+      "The lever can only be pushed.";
+    Push:
+      if (self has general && plug has general)
+        "The lever is already pushed down and tied tightly to the plug in the hole.";
+      else
+        "When you push the lever down, you hear a clattering noise coming from the sacristy. As soon as you release the lever to investigate, it returns to its original position and you hear the clattering noise again. You'll need to find a way to hold the lever in position if you want to find what's causing that clattering noise.";
+  ],
+has static;
+
+!----------------------------------------
+! Small hole below lever
+!----------------------------------------
+Object hole_in_sanctuary "small hole" room18
+class OpenContainer
+with
+  name 'small' 'hole' 'in' 'wall',
+  description
+  [;
+    print "It's a small hole, possibly made by a bullet. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Receive:
+      if (noun ~= plug)
+        print_ret (The)noun, " won't fit in the hole.";
+  ],
+has container open static;
+
+!========================================
+! Room 19: Bottom of Bell Tower
+!========================================
+Object room19 "Bottom of Bell Tower"
+with
+  description "You're in the lower area of the bell tower. The long rope hangs above you and, looking higher, you can make out the bell. Some stairs lead up to it, while a wooden ladder leads down through an opening to the sacristy. The mechanism controlling the ladder is beside the opening.",
+  u_to room20,
+  d_to room17,
+has light;
+
+!----------------------------------------
+! Bell tower (floating object)
+!----------------------------------------
+Object "bell tower"
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'tall' or 'stone' or 'bell' or 'tower' or 'belltower')
+    {
+      i++;
+      if (nw == 'bell')
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description
+  [;
+    print "It's a tall stone tower whose only purpose is to house the church's bell.";
+    if (self in room20)
+      print " The top of the tower gives you a good view of the village square and the surrounding countryside.";
+    "";
+  ],
+  found_in room19 room20,
+has scenery;
+
+!----------------------------------------
+! Bell (floating object)
+!----------------------------------------
+Object bell "bell"
+with
+  name 'church^s' 'large' 'bronze' 'bell',
+  description "It's a large bronze bell attached to the top of the bell tower.",
+  before
+  [;
+    Attack:
+      "You can't reach it. If you want to ring the bell, you'll need to pull the long rope, but I wouldn't advise that, as it will warn the desperados of your presence.";
+  ],
+  found_in room19 room20,
+has scenery;
+
+!----------------------------------------
+! Stairs (floating object)
+!----------------------------------------
+Object "stairs"
+with
+  name 'flight' 'of' 'stairs' 'steps' 'stairway' 'staircase',
+  description
+  [;
+    print "It's just a flight of stairs going ";
+    if (self in room19)
+      print "up to the top";
+    else
+      print "down to the bottom";
+    " of the bell tower.";
+  ],
+  before
+  [;
+    Climb, Enter:
+      if (self in room19)
+        <<Go FAKE_U_OBJ>>;
+      else
+        <<Go FAKE_D_OBJ>>;
+  ],
+  found_in room19 room20,
+has pluralname scenery;
+
+!========================================
+! Room 20: Top of Bell Tower
+!========================================
+Object room20 "Top of Bell Tower"
+with
+  description "You're in the top of the bell tower next to the huge bronze bell. Looking down, you can see the village square and a commanding view of the countryside. Some stairs lead down to the bottom of the bell tower.",
+  d_to
+  [;
+    if (revolver notin player || rifle notin player)
+      "Don't leave your weapons behind. You never know when you might need them.";
+    return room19;
+  ],
+has light;
+
+!----------------------------------------
+! Countryside
+!----------------------------------------
+Object "countryside" room20
+with
+  name 'surroundng' 'countryside' 'view' 'desert',
+  description "The desert extends in all directions, apart from the village to the south. You have a good view of the village square from here.",
+has scenery;
+
+!----------------------------------------
+! Village square
+!----------------------------------------
+Object "square" room20
+with
+  parse_name
+  [ nw i flag;
+    nw = NextWord();
+    while (nw == 'village' or 'square')
+    {
+      i++;
+      if (nw == 'village' && TestScope(village))
+        flag++;
+      nw = NextWord();
+    }
+    if (i == flag)
+      return 0;
+    return i;
+  ],
+  description
+  [;
+    print "The top of the bell tower gives you a good view over the village square. ";
+    if (outlaw in room20)
+      "You can see one of the outlaws wandering around down there, as though he's waiting for someone. You should take him out while you've got a chance and you're at a safe distance.";
+    else
+      "It looks empty and you don't see anything out of the ordinary.";
+  ],
+has scenery;
+
+!----------------------------------------
+! Terrified-looking boy
+!----------------------------------------
+Object scared_boy "terrified-looking boy" room20
+with
+  name 'terrified-looking' 'terrified' 'looking' 'scared' 'boy' 'kid',
+  description
+  [;
+    print "This young boy might be the only survivor of the whole village. He ";
+    if (revolver in player || rifle in player)
+      "looks at you in fear, as though he's scared of something.";
+    else
+      "seems to understand that you mean him no harm.";
+  ],
+  life
+  [;
+    if (revolver in player || rifle in player)
+    {
+      print "The boy is terrified by your ";
+      if (revolver in player && rifle in player)
+        print "weapons";
+      else if (revolver in player)
+        print "revolver";
+      else
+        print "rifle";
+      " and cringes in fear. That is understandable, when you consider the horrors he must have witnessed here. He might think you're one of the desperados. Perhaps you should drop all your weapons first.";
+    }
+    Ask:
+      wn = consult_from;
+      switch (NextWord())
+      {
+        'bandits', 'criminals', 'desperados', 'outlaws':
+          "The boy seems to understand some of what you're saying, but he's not able to answer your question. He just shapes his fingers like a gun and waves it around saying, ~Bang, bang, bang.~";
+        'bottle', 'sarsaparilla':
+          if (TestScope(sarsaparilla))
+            "The boy points at the bottle, then points to himself and makes a drinking gesture. Perhaps he's thirsty.";
+        'flask', 'tequila':
+          if (TestScope(tequila))
+            "The boy points at the bottle, then points at you and makes a drinking gesture.";
+        'manolo', 'ramirez':
+          "As soon as you say that name, the poor kid starts crying. He looks scared to death. Ramirez and his band must be wiped off this Earth.";
+        default:
+          "The boy just shrugs his shoulders. He doesn't seem to understand English. Try asking him about something else.";
+      }
+    Attack:
+      "Leave the poor boy alone. He's been through enough trauma already.";
+    Give:
+      if (noun == tequila)
+        "Shame on you. You should not be giving alcohol to a minor.";
+      if (noun == sarsaparilla)
+      {
+        move sarsaparilla to limbo;
+        move scared_boy to limbo;
+        move outlaw to room20;
+        "The boy opens the bottle, drinks it down in a few gulps, then wipes his mouth on his sleeve. He gives you a big appreciative smile. You sense intelligence in his dark eyes, as though he's brewing a plan. Then he runs down the stairs, taking the empty bottle with him, and disappears out of sight.^^You're still wondering what's going on, when you hear a noise in the village square below. You'd better check it out before you go down there.";
+      }
+    Show:
+      if (noun == tequila)
+        "He shakes his head and points to you, then makes a drinking gesture with his cupped hand.";
+      if (noun == sarsaparilla)
+        "He seems interested in the bottle of sarsaparilla. He points to it and draws both his hands towards his chest, as if to say, ~Give it to me.~";
+    Talk:
+      if (self has general)
+        "The boy just shakes his head and says, ~No hablo ingles~, then repeats the drinking gesture.";
+      give self general;
+      "You start talking to the boy in a soft tone and he calms down a little. After a while, he cups his hand and makes a drinking gesture. He must be thirsty.";
+  ],
+has animate;
+
+!----------------------------------------
+! One of the outlaws
+!----------------------------------------
+Object outlaw "outlaws"
+with
+  article "one of the",
+  name 'bandit' 'outlaw' 'one' 'of' 'outlaws',
+  description "From your position inside the bell tower you can see one of the outlaws down in village square. He seems to be alone, so it's a good time to take at least one of them down before he regroups with the others.",
+  before
+  [;
+    if (action ~= ##Examine or ##Shoot)
+      "He's too far away.";
+    Shoot:
+      if (second == nothing && rifle in player && revolver in player)
+        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT OUTLAW WITH REVOLVER.";
+      if (second == nothing && revolver in player)
+      {
+        print "(with the revolver)^";
+        second = revolver;
+      }
+      if (second == nothing && rifle in player)
+      {
+        print "(with the rifle)^";
+        second = rifle;
+      }
+      if (second == nothing)
+        "You have no weapon.";
+      if (second ~= revolver or rifle)
+        "You can't shoot anything with ", (ThatOrThose)second, ".";
+      if (second == revolver)
+        "It's risky to use your revolver, as it's a short-range weapon. If you miss, all hell will break loose. It's better to use your rifle from this distance.";
+      if (second.number == 0)
+        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
+      second.number--;
+      move self to limbo;
+      move sombrero to room10;
+      move dead_outlaw to room10;
+      "BANG! You shoot the outlaw and he staggers backwards. He falls towards the church so that he's now out of your line of sight. You'd better go down and check that he's dead.";
+  ],
+has animate scenery;
+
+!========================================
+! Room 21: Porch of Villa
+!========================================
+Object room21 "Porch of Villa"
+with
+  description "You're on the porch of a villa located on the east side of the village square. It's a big house, compared to the others, possibly the home of someone important. The front door of the villa is to the east.",
+  e_to locked_door,
+  w_to room10,
+  in_to locked_door,
+  before
+  [;
+    Go:
+      if (room10.state ~= 0 && selected_direction == w_to)
+        print_ret (string)DONT_GO_WANDERING_OFF;
+  ],
+has light;
+
+!----------------------------------------
+! Porch
+!----------------------------------------
+Object "porch" room21
+with
+  name 'porch',
+  description "This is the porch of the villa. Stepping off the porch takes you to the village square to the west.",
+has scenery;
+
+!----------------------------------------
+! Villa
+!----------------------------------------
+Object "villa" room21
+with
+  name 'villa' 'house' 'home',
+  description "The villa is made of the classic Mexican building materials, but it has a strong Spanish influence. This gives the impression that it was owned by someone wealthy.",
+has scenery;
+
+!----------------------------------------
+! Locked door
+!----------------------------------------
+Object locked_door "door" room21
+with
+  name 'front' 'door',
+  description "It's a large wooden door that looks very secure. It's ornately decorated and currently closed.",
+  door_dir e_to,
+  door_to limbo,
+  with_key dummy_key,
+has door lockable locked openable scenery;
+
+!----------------------------------------
+! Rocking chair
+!----------------------------------------
+Object rocking_chair "rocking chair" room21
+class OpenContainer
+with
+  name 'old' 'rocking' 'chair',
+  description
+  [;
+    print "This old rocking chair looks like it is used to sit in the shade and relax after a hot day at work. It looks very comfy. ";
+    <<Search self>>;
+  ],
+  before
+  [;
+    Climb, Enter:
+      if (verb_word == 'lie')
+        "It's not big enough to lie on.";
+      if (verb_word == 'stand')
+        "It's not stable enough to stand on.";
+      if (child(self) ~= 0)
+        "You'll need to clear everything off the chair before you can sit on it.";
+      if (player in rocking_chair)
+        "You're already sitting on it.";
+    Exit:
+      if (desperados in room21)
+        "You'd better stay seated or the desperados will realise that you're not one of them.";
+  ],
+  after
+  [;
+    Enter:
+      "You sit on the rocking chair.";
+    Exit:
+      "You get off the rocking chair.";
+  ],
+has enterable static supporter;
+
+!========================================
+! Limbo
+!========================================
+Object limbo;
+
+Object dummy_key;
+
+!========================================
+! Printing rules
+!========================================
+[ consultWord word i;
+  for (i=0:i<WordLength(word):i++)
+    print (char)LowerCase(WordAddress(word)->i);
+];
+
+[ DoesntOrDont obj;
+  if (obj has pluralname)
+    print "don't";
+  else
+    print "doesn't";
+];
+
+[ firstConsultWord word i;
+  for (i=0:i<WordLength(word):i++)
+    if (i == 0)
+      print (char)UpperCase(WordAddress(word)->i);
+    else
+      print (char)LowerCase(WordAddress(word)->i);
+];
+
+!========================================
+! Other routines
+!========================================
+[ LowerCase c; ! for ZSCII matching ISO 8859-1
+  switch (c)
+  {
+    'A' to 'Z': c = c + 32;
+    202, 204, 212, 214, 221: c--;
+    217, 218: c = c - 2;
+    158 to 160, 167, 168, 208 to 210: c = c - 3;
+    186 to 190, 196 to 200: c = c - 5 ;
+    175 to 180: c = c - 6;
+  }
+  return c;
+];
+
+[ UpperCase c; ! for ZSCII matching ISO 8859-1
+  switch (c)
+  {
+    'a' to 'z': c = c - 32;
+    201, 203, 211, 213, 220: c++;
+    215, 216: c = c + 2;
+    155 to 157, 164, 165, 205 to 207: c = c + 3;
+    181 to 185, 191 to 195: c = c + 5 ;
+    169 to 174: c = c + 6;
+  }
+  return c;
+];
+
+!========================================
+! Grammar
+!========================================
+Extend 'ask'
+  * 'about' topic -> AskAbout;
+
+Extend 'cut' first
+  * noun 'with' held -> Cut;
+
+Extend 'lock' first
+  * noun -> Lock;
+
+Extend 'look'
+  * 'into' noun -> Search
+  * 'behind'/'under' noun -> LookUnder;
+
+Extend 'pull' first
+  * noun noun=ADirection -> PullDir
+  * noun 'to'/'towards' noun=ADirection -> PullDir;
+
+Extend 'push' first
+  * noun 'to'/'towards' noun=ADirection -> PushDir;
+
+Extend 'read' first
+  * noun -> Read;
+
+Extend only 'say' first
+  * topic -> Say;
+
+Extend only 'speak' replace
+  * -> Talk
+  * creature -> Talk
+  * noun -> Talk
+  * 'to'/'with' creature -> Talk
+  * 'to'/'with' noun -> Talk
+  * 'to'/'with' creature 'about' topic -> Ask
+  * 'to'/'with' noun 'about' topic -> Ask;
+
+Extend 'unlock' first
+  * noun -> Unlock;
+
+Verb meta 'about' 'info'
+  * -> About;
+
+Verb meta 'credits'
+  * -> Credits;
+
+Verb 'dance'
+  * -> Dance;
+
+Verb 'fire'
+  * held -> Fire
+  * held 'at' noun -> Shoot reverse
+  * 'at' noun 'with' held -> Shoot;
+
+Verb 'hang' = 'put';
+
+Verb meta 'help' 'instructions'
+  * -> Help;
+
+Verb 'hide'
+  * -> Hide
+  * noun -> Hide;
+
+Verb 'hint' 'clue'
+  * -> Hint;
+
+Verb 'inspect' = 'examine';
+
+Verb 'load'
+  * noun -> Load
+  * noun 'with' held -> Load;
+
+Verb 'shoot'
+  * -> Shoot
+  * noun -> Shoot
+  * noun 'with' held -> Shoot
+  * 'at' noun -> Shoot
+  * 'at' noun 'with' held -> Shoot
+  * held 'at' noun -> Shoot reverse
+  * 'through' noun -> Shoot;
+
+Verb 'talk' 'babble' 'chat' 'communicate' 'converse' 'gab' 'gossip'
+  * -> Talk
+  * creature -> Talk
+  * noun -> Talk
+  * 'to'/'with' creature -> Talk
+  * 'to'/'with' noun -> Talk
+  * 'to'/'with' creature 'about' topic -> Ask
+  * 'to'/'with' noun 'about' topic -> Ask;
+
+Verb 'unravel' 'untwist' 'unwind'
+  * noun -> Unravel;
+
+Verb 'use'
+  * noun -> Use;
+
+Verb 'untie' 'disconnect' 'detach' 'unfasten'
+  * noun -> Untie
+  * noun 'from' noun -> Untie;
+
+Verb 'xyzzy' 'plover' 'plugh' 'yoho'
+  * -> MagicWord;
+
+!========================================
+! Actions
+!========================================
+[ AboutSub;
+  print "This game is an enhanced, text-only port of the semi-graphic Italian adventure 'Kenneth Johnson: Desperados' by Bonaventura Di Bello. It was originally written with The Quill and Illustrator and published by Edizioni Hobby S.r.l. on the cover tape of 'Explorer', no. 12, November 1987 for the Commodore 64 and MSX.^^The data was extracted from the C64 version using UnQuill, translated to English and rewritten for a modern audience with the original author's permission. The new version includes many enhancements that weren't in the original. The coding was done using Inform 6 and the PunyInform library.^^";
+  <<Credits>>;
+];
+
+[ AskAboutSub x count npc;
+  objectloop (x in location && x has animate && x ~= player)
+  {
+    count++;
+    npc = x;
+  }
+  if (count == 0)
+    "There's no one here to answer your questions.";
+  if (count == 1)
+    <<Ask npc noun>>;
+  "As there are multiple characters here, you'll have to specify who to ask, e.g. ASK MAN ABOUT DOG.";
+];
+
+[ CreditsSub;
+  "Original concept by Bonaventura Di Bello.^English translation by Garry Francis & Google Translate.^Game redesign and coding by Gianluca Girelli with assistance from Garry Francis.^Play testing by Garry Francis, Piergiorgio D'Errico, Jade, improvmonster, Robert Eggleston, and RJ Kowalski.";
+];
+
+[ DanceSub;
+  "This is not the time or place for dancing.";
+];
+
+[ FireSub;
+  if (ObjectIsUntouchable(noun))
+    return;
+  "You'll have to tell me what to fire at.";
+];
+
+!Delete GoSub if diagonal directions are used
+[ GoSub _prop;
+  if (selected_direction == ne_to or nw_to or se_to or sw_to)
+    "There are no diagonal directions in this game.";
+  _prop = selected_direction;
+#Iftrue RUNTIME_ERRORS > RTE_MINIMUM;
+  if (_prop == 0)
+    return _RunTimeError(ERR_INVALID_DIR_PROP);
+#Endif;
+  return GoDir(_prop);
+];
+
+[ HelpSub;
+  "Tell me what to do using simple commands starting with a verb.^^Use LOOK (or L) to refresh the location description. Identify all the objects in the description and EXAMINE (or X) each one. Read responses carefully for hints.^^Use compass directions (N, S, E, W, U and D) to move around. Draw a map as you go.^^Use GET or TAKE to take objects and DROP to drop them again. Use WEAR to wear things like clothing and REMOVE to remove anything that's currently worn. Use INVENTORY (or I) to see what you're carrying and wearing.^^Use AGAIN (or G) to repeat the last command.^^Use UNDO to undo the last command if you make a mistake.^^Use SAVE to save the game and RESTORE to restore it again.^^There are over 100 verbs that you can use, so if something doesn't work, try a different verb or a different way of doing things. Use HINT if you get stuck.^^For full instructions, see the game page at <https://bdb-project.itch.io/desperados>.";
+];
+
+[ HideSub;
+  if (noun == nothing)
+    "There's nowhere to hide.";
+  if (ObjectIsUntouchable(noun))
+    return;
+  "If you want to hide ", (the)noun, ", try putting ", (ItOrThem)noun, " in something.";
+];
+
+[ HintSub;
+  "Examine everything you find and draw a map.";
+];
+
+[ LoadSub;
+  if (ObjectIsUntouchable(noun))
+    return;
+  "That would be a neat trick.";
+];
+
+[ LockSub k;
+  if (ObjectIsUntouchable(noun))
+    return;
+  if (noun hasnt lockable)
+  {
+    PrintMsg(MSG_LOCK_NOT_A_LOCK, 'lock');
+    rtrue;
+  }
+  if (noun has locked)
+  {
+    PrintMsg(MSG_LOCK_ALREADY_LOCKED);
+    rtrue;
+  }
+  if (noun has open)
+  {
+    PrintMsg(MSG_LOCK_CLOSE_FIRST);
+    rtrue;
+  }
+  k = RunRoutines(noun, with_key);
+  if (k == nothing)
+    "You can't see how to lock ", (ItOrThem)noun, ".";
+  if (second == nothing && k ~= nothing && k in player)
+  {
+    second = k;
+    print "(with ", (the)second, ")^";
+  }
+  if (second == nothing)
+    "You don't have the key.";
+  if (second ~= k)
+  {
+    PrintMsg(MSG_LOCK_KEY_DOESNT_FIT);
+    rtrue;
+  }
+  give noun locked;
+  run_after_routines_msg = MSG_LOCK_DEFAULT;
+  run_after_routines_arg_1 = 'lock';
+];
+
+[ LookUnderSub;
+  if (location == thedark)
+    "But it's dark.";
+  "You find nothing of interest.";
+];
+
+[ MagicWordSub;
+  print "There's a puff of smoke and Yosemite Sam appears out of nowhere. He's waving a pair of six-shooters.^^";
+  switch (random(5))
+  {
+    1: print "~Say yer prayers, ya long-eared, fur-bearin', flat-footed varmint.~";
+    2: print "~Start prayin', ya long-eared galoot!~";
+    3: print "~I'm gonna fill yer full of lead! So long, sucker!~";
+    4: print "~I'll blow yer carcass right out from under yer hat!~";
+    5: print "~Ya better say yer prayers, ya flea-bitten varmint. I'm a gonna blow ya to kingdom come!~";
+  }
+  print "^^He looks around, confused. ";
+  switch (random(10))
+  {
+    1: print "~Great horny toads! Where's that fur-bearin' carpet-bagger?~";
+    2: print "~Jumpin' Jehoshaphat. I'll blast that rabbit to smithereens!~";
+    3: print "~Ooh, I'd like to lay my hands on that lily-livered varmint.~";
+    4: print "~Blast it! Where's that long-eared varmint?~";
+    5: print "~Oooooo! I hate that rabbit! I'll blast his head off for this!~";
+    6: print "~That ornery fur-bearin' varmint. He'll pay for this!~";
+    7: print "~That dirty double-crosser! I'm a-comin' back, and I ain't comin' back to play marbles!~";
+    8: print "~Now where's that varmint a-hidin'? I'll blast the fur clean off his flea-bitten hide!~";
+    9: print "~That double crossin' rabbit. I'll tear him limb from limb!~";
+    10: print "~I'll fix his wagon, the cotton-pickin' varmint!~";
+  }
+  "^^With that, he fades into the distance.";
+];
+
+[ PullDirSub;
+  return MSG_PUSHDIR_DEFAULT;
+];
+
+[ ReadSub;
+  if (ObjectIsUntouchable(noun, true))
+    "I suppose you read tea leaves, too";
+  "There's nothing legible on ", (ThatOrThose)noun, ".";
+];
+
+[ SaySub i;
+  if (consult_words == 0)
+    "You have nothing to say.";
+  print "~";
+  i = consult_from;
+  print (firstConsultWord)i++;
+  while (i < consult_from + consult_words)
+    print " ", (consultWord)i++;
+  print ".~^^";
+  wn = consult_from;
+  if (consult_words == 1 && NextWord() == 'xyzzy' or 'plover' or 'plugh' or 'yoho')
+    <<MagicWord>>;
+  if (AfterRoutines())
+    return;
+  "Nothing happens.";
+];
+
+[ ShootSub;
+  if (noun == nothing)
+    "You point your finger in the air and say, ~Bang!~";
+  if (ObjectIsUntouchable(noun))
+    return;
+  if (noun == player)
+    "Are you feeling suicidal?";
+  "You can't just go around shooting things arbitrarily, especially in the Wild West. Choose your target carefully or it might get you killed.";
+];
+
+[ TalkSub;
+  if (noun == nothing)
+    "You start talking to no one in particular.";
+  if (noun == player)
+    "You start talking to yourself, but it's a one-sided conversation.";
+  if (RunLife(noun, ##Talk))
+    rtrue;
+  print_ret (The)noun, " ", (IsOrAre)noun, " not very talkative.";
+];
+
+[ UnlockSub k;
+  if (ObjectIsUntouchable(noun))
+    return;
+  if (noun hasnt lockable)
+  {
+    PrintMsg(MSG_UNLOCK_NOT_A_LOCK, 'unlock');
+    rtrue;
+  }
+  if (noun hasnt locked)
+  {
+    PrintMsg(MSG_UNLOCK_ALREADY_UNLOCKED, 'unlock');
+    rtrue;
+  }
+  k = RunRoutines(noun, with_key);
+  if (k == nothing)
+    "You can't see how to unlock ", (ItOrThem)noun, ".";
+  if (second == nothing && k ~= nothing && k in player)
+  {
+    second = k;
+    print "(with ", (the)second, ")^";
+  }
+  if (second == nothing)
+    "You don't have the key.";
+  if (second ~= k)
+  {
+    PrintMsg(MSG_UNLOCK_KEY_DOESNT_FIT);
+    rtrue;
+  }
+  give noun ~locked;
+  run_after_routines_msg = MSG_UNLOCK_DEFAULT;
+  run_after_routines_arg_1 = 'unlock';
+];
+
+[ UnravelSub;
+  if (ObjectIsUntouchable(noun))
+    return;
+  "You can't unravel ", (ThatOrThose)noun, ".";
+];
+
+[ UntieSub;
+  if (noun == nothing)
+    "What do you want to untie?";
+  if (ObjectIsUntouchable(noun))
+    return;
+  "You can't untie ", (ThatOrThose)noun, ".";
+];
+
+[ UseSub;
+  if (ObjectIsUntouchable(noun))
+    return;
+  "You'll have to be more explicit than that.";
+];
+
+End;
