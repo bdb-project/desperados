@@ -1,0 +1,113 @@
+Desperados, release 2
+By Gianluca Girelli & Garry Francis
+For Z-code interpreters
+
+Solution by Garry Francis
+----------------------------------------
+This is a minimal solution. You'll need to EXAMINE lots of things for this solution to make sense. Some optional (but significant) commands are shown in parentheses. These can be omitted once you know what to do.
+
+W
+N
+W
+W
+(X MIRROR) (as a kid, you recall blinding your friends with a mirror like this)
+GET MIRROR (it reveals the plug in the wall that it was hanging on)
+(DROP IT) (you put it down carefully so it doesn't break)
+GET PLUG
+E
+S
+(X CUPBOARD) (it's closed)
+OPEN CUPBOARD (you find a knife)
+GET KNIFE
+(X SCRATCHES) (they've been left by someone moving the table)
+(LOOK UNDER TABLE) (there's something there)
+MOVE TABLE (you reveal a trapdoor)
+(X TRAPDOOR) (it's closed)
+OPEN TRAPDOOR
+D
+GET BOTTLE
+U
+N
+E
+N
+N
+N
+E
+(X MAN) (he may have been priest's helper)
+SEARCH MAN (you find some bullets)
+GET BULLETS
+(X THEM) (they're rifle bullets, there's a dozen of them)
+LOAD RIFLE WITH BULLETS (you're now ready to make the world a better place)
+(X RIFLE) (it now has 12 bullets)
+W
+N
+(N)
+(PUSH LEVER) (you hear clattering from sacristy, but lever won't stay down)
+(S)
+E
+CUT ROPE WITH KNIFE (a short length of rope falls to the floor)
+(DROP KNIFE)
+GET ROPE
+W
+N
+(TIE ROPE TO LEVER) (it's too thick, try unravelling it)
+UNRAVEL ROPE (a cord falls to the floor)
+(DROP ROPE)
+GET CORD
+TIE IT TO LEVER
+PUT PLUG IN HOLE
+TIE CORD TO PLUG (you also pull it taught and hear clattering from the sacristy)
+S
+E (there's now a wooden ladder here)
+U
+U
+(X BOY) (he's scared of something)
+(TALK TO HIM) (he's terrified of your weapons)
+DROP GUNS
+(X BOY) (he now understands that you mean him no harm)
+(TALK TO HIM) (he gestures that he's thirsty)
+(G) (he doesn't speak English)
+(SHOW BOTTLE TO BOY) (he gestures to give it to him)
+GIVE BOTTLE TO BOY (he drinks it and runs off, you hear something in the square)
+(X SQUARE) (there's an outlaw there)
+(X OUTLAW) (you need to shoot him from this safe distance)
+GET GUNS
+(SHOOT OUTLAW WITH REVOLVER) (you need a long-range weapon from this distance)
+SHOOT OUTLAW WITH RIFLE (he falls out of your line of sight)
+D
+D
+W
+S
+S
+S
+GET SOMBRERO
+(X IT) (you should wear it as a disguise)
+WEAR IT
+(X OUTLAW) (you should search him)
+(SEARCH HIM) (you should hide the body)
+DRAG OUTLAW TO WEST
+(X WOMAN) (do something to give some dignity back to the poor woman)
+(SEARCH HER) (you can't get to her because of the vultures)
+(X VULTURES) (they're nibbling on the corpse)
+SHOOT VULTURES WITH REVOLVER (they take flight and leave feathers behind)
+SEARCH WOMAN (something falls out of her pocket)
+(G) (you find a cotton handkerchief and place it over the woman's face)
+(L) (first object was a small key)
+GET KEY
+(N) (the door is closed)
+(OPEN DOOR) (it's locked)
+UNLOCK DOOR WITH KEY
+OPEN IT
+(DROP KEY)
+DRAG OUTLAW TO NORTH
+S (boy appears from west, he's carrying a bottle, desperados are coming)
+(X BOTTLE) (it contains a rattlesnake, boy gestures to go east)
+E (boy gestures to go east)
+E (boy gestures to sit on rocking chair)
+SIT ON CHAIR (boy takes mirror from you if you're holding it or shows it to you)
+Z (boy gives you bottle with rattlesnake, shows throwing gesture and runs off)
+Z (you hear the rumbling of hooves)
+Z (desperados arrive in village square, one of them calls out to join them)
+Z (boy reappears and shines mirror in their eyes, chaos ensues)
+THROW BOTTLE AT DESPERADOS (it breaks, horses rear and you shoot them all)
+***THE END***

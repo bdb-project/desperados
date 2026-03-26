@@ -1,127 +1,130 @@
 !% -~S
 !% $OMIT_UNUSED_ROUTINES=1
+!% $ZCODE_COMPACT_GLOBALS=1
 !% $ZCODE_LESS_DICT_DATA=1
+!% $ZCODE_MAX_INLINE_STRING=9999
 !% $MAX_ABBREVS=96
 !========================================
 ! Desperados
 ! Kenneth Johnson trilogy #3
-! Copyright © 2025 Gianluca Girelli
+! Copyright © 2025 Gianluca Girelli and Garry Francis
 !========================================
 !Constant DEBUG;
 
-Abbreviate ". ";
-Abbreviate ", ";
-Abbreviate " the ";
-Abbreviate "You";
-Abbreviate "The";
-Abbreviate "It's";
-Abbreviate "ing";
-Abbreviate "you";
-Abbreviate "and";
-Abbreviate "village";
-Abbreviate "'re";
-Abbreviate "that";
-Abbreviate "'ll have to";
-Abbreviate "perados";
-Abbreviate "'t ";
-Abbreviate "'s ";
-Abbreviate "ther";
-Abbreviate "d to ";
-Abbreviate "at ";
-Abbreviate "e of";
-Abbreviate "is ";
-Abbreviate "nd o";
-Abbreviate "'ll ";
-Abbreviate "ut ";
-Abbreviate "d b";
-Abbreviate "e to ";
-Abbreviate "ill ";
-Abbreviate "e w";
-Abbreviate "already ";
-Abbreviate "e b";
-Abbreviate "them";
-Abbreviate "Ramirez";
-Abbreviate "e s";
-Abbreviate "en ";
-Abbreviate ".^^";
-Abbreviate "ver";
-Abbreviate "e c";
-Abbreviate "e no";
-Abbreviate "ng ";
-Abbreviate "it ";
-Abbreviate "a small ";
-Abbreviate "ell tower";
-Abbreviate "they";
-Abbreviate "looks ";
-Abbreviate "e from";
-Abbreviate "an ";
-Abbreviate "e m";
-Abbreviate "d w";
-Abbreviate "as ";
-Abbreviate "der";
-Abbreviate "ter";
-Abbreviate "th ";
-Abbreviate "es ";
-Abbreviate "in ";
-Abbreviate "It ";
-Abbreviate "their ";
-Abbreviate "e for ";
-Abbreviate " to ";
-Abbreviate "her";
-Abbreviate "ead";
-Abbreviate "illa";
-Abbreviate "for";
-Abbreviate "sho";
-Abbreviate "irection";
-Abbreviate "cor";
-Abbreviate "s ar";
-Abbreviate "s o";
-Abbreviate "from";
-Abbreviate "e on";
-Abbreviate "est";
-Abbreviate "wit";
-Abbreviate "weapon";
-Abbreviate "car";
-Abbreviate "e a";
-Abbreviate "_to/";
-Abbreviate "front";
-Abbreviate "s b";
-Abbreviate "s d";
-Abbreviate "ent";
-Abbreviate "wer";
-Abbreviate "loor";
-Abbreviate "ight";
-Abbreviate "ear";
-Abbreviate "con";
-Abbreviate "ll m";
-Abbreviate "squar";
-Abbreviate "can";
-Abbreviate "script";
-Abbreviate "e it";
-Abbreviate "somet";
-Abbreviate "would";
-Abbreviate "int";
-Abbreviate " to";
-Abbreviate " on";
-Abbreviate " lo";
-Abbreviate " not";
+Abbreviate " the village square";           !    15x19, saved   234
+Abbreviate "cotton handkerchief";           !     5x19, saved    64
+Abbreviate "Kenneth Johnson";               !     5x17, saved    57
+Abbreviate "rocking chair";                 !     8x13, saved    73
+Abbreviate " rattlesnake";                  !     7x12, saved    58
+Abbreviate "bell tower";                    !    13x10, saved    92
+Abbreviate "desperados";                    !    28x10, saved   212
+Abbreviate "You can't ";                    !    31x12, saved   298
+Abbreviate "understand";                    !     9x10, saved    60
+Abbreviate " anything";                     !    18x 9, saved   117
+Abbreviate " you can ";                     !    25x 9, saved   166
+Abbreviate "direction";                     !    13x 9, saved    82
+Abbreviate "ranscript";                     !     8x 9, saved    47
+Abbreviate "a small ";                      !    16x 8, saved    87
+Abbreviate " of the ";                      !    69x 8, saved   405
+Abbreviate " already";                      !    22x 8, saved   123
+Abbreviate "trapdoor";                      !    13x 8, saved    69
+Abbreviate " in the ";                      !    40x 8, saved   231
+Abbreviate " Ramirez";                      !    11x 9, saved    68
+Abbreviate "There's ";                      !    17x10, saved   124
+Abbreviate " to the ";                      !    68x 8, saved   399
+Abbreviate " on the ";                      !    27x 8, saved   153
+Abbreviate "nothing ";                      !    23x 8, saved   129
+Abbreviate "The boy ";                      !    18x 9, saved   117
+Abbreviate "village";                       !    32x 7, saved   151
+Abbreviate " around";                       !    14x 7, saved    61
+Abbreviate "wooden ";                       !    13x 7, saved    56
+Abbreviate " looks ";                       !    19x 7, saved    86
+Abbreviate "church";                        !    14x 6, saved    50
+Abbreviate " your ";                        !    50x 6, saved   194
+Abbreviate "ed to ";                        !    33x 6, saved   126
+Abbreviate "bottle";                        !    15x 6, saved    54
+Abbreviate "bullet";                        !    14x 6, saved    50
+Abbreviate ". You ";                        !    36x 8, saved   207
+Abbreviate "outlaw";                        !    18x 6, saved    66
+Abbreviate "mirror";                        !    14x 6, saved    50
+Abbreviate " with";                         !    40x 5, saved   114
+Abbreviate "have ";                         !    45x 5, saved   129
+Abbreviate "ould ";                         !    36x 5, saved   102
+Abbreviate ", but";                         !    57x 6, saved   222
+Abbreviate " you ";                         !   130x 5, saved   384
+Abbreviate " from";                         !    51x 5, saved   147
+Abbreviate "thing";                         !    46x 5, saved   132
+Abbreviate " that";                         !    94x 5, saved   276
+Abbreviate "It's ";                         !    67x 7, saved   326
+Abbreviate " and ";                         !   129x 5, saved   381
+Abbreviate " some";                         !    34x 5, saved    96
+Abbreviate " the ";                         !   326x 5, saved   972
+Abbreviate " what";                         !    23x 5, saved    63
+Abbreviate ". The";                         !    42x 7, saved   201
+Abbreviate " for ";                         !    32x 5, saved    90
+Abbreviate " was ";                         !    21x 5, saved    57
+Abbreviate " are ";                         !    33x 5, saved    93
+Abbreviate " down";                         !    27x 5, saved    75
+Abbreviate "able";                          !    35x 4, saved    64
+Abbreviate "his ";                          !    55x 4, saved   104
+Abbreviate "side";                          !    35x 4, saved    64
+Abbreviate "not ";                          !    31x 4, saved    56
+Abbreviate " of ";                          !    97x 4, saved   188
+Abbreviate " is ";                          !    66x 4, saved   126
+Abbreviate "ight";                          !    28x 4, saved    50
+Abbreviate "You'";                          !    59x 6, saved   230
+Abbreviate "tion";                          !    43x 4, saved    80
+Abbreviate "here";                          !    71x 4, saved   136
+Abbreviate "like";                          !    28x 4, saved    50
+Abbreviate "n't ";                          !    76x 5, saved   222
+Abbreviate "The ";                          !    64x 5, saved   186
+Abbreviate "illa";                          !    30x 4, saved    54
+Abbreviate " to ";                          !   152x 4, saved   298
+Abbreviate "ing ";                          !   130x 4, saved   254
+Abbreviate " you";                          !    60x 4, saved   114
+Abbreviate "You ";                          !   111x 5, saved   327
+Abbreviate "ear";                           !    56x 3, saved    53
+Abbreviate "ope";                           !    53x 3, saved    50
+Abbreviate "'s ";                           !    75x 4, saved   144
+Abbreviate ". I";                           !    28x 5, saved    78
+Abbreviate " in";                           !   103x 3, saved   100
+Abbreviate "ed.";                           !    35x 4, saved    64
+Abbreviate "ing";                           !   116x 3, saved   113
+Abbreviate "ver";                           !    86x 3, saved    83
+Abbreviate "and";                           !    81x 3, saved    78
+Abbreviate ".^^";                           !    23x 6, saved    86
+Abbreviate " it";                           !   105x 3, saved   102
+Abbreviate " be";                           !    82x 3, saved    79
+Abbreviate "out";                           !    80x 3, saved    77
+Abbreviate "ed ";                           !    85x 3, saved    82
+Abbreviate "ent";                           !    54x 3, saved    51
+Abbreviate " a ";                           !   128x 3, saved   125
+Abbreviate "re ";                           !    63x 3, saved    60
+Abbreviate "ll ";                           !    80x 3, saved    77
+Abbreviate "est";                           !    69x 3, saved    66
+Abbreviate "the";                           !   141x 3, saved   138
+Abbreviate "ter";                           !    68x 3, saved    65
+Abbreviate "e.";                            !    66x 3, saved    63
+Abbreviate ", ";                            !   171x 3, saved   168
+Abbreviate ". ";                            !   158x 3, saved   155
 
 Constant Story "Desperados";
-Constant Headline "^Kenneth Johnson trilogy #3^Copyright (c) 2025 Gianluca Girelli^Type ABOUT for further info and credits.^^";
+Constant Headline "^Kenneth Johnson trilogy #3^Copyright (c) 2025 Gianluca Girelli and Garry Francis^Type ABOUT for further info and credits.^^";
 
 Array UUID_ARRAY string "UUID://9ead9613-bc13-4c62-af3d-186247a78d9e//";
 #Ifdef UUID_ARRAY;
 #Endif;
 
-Release 1;
-Serial "250629";
+Release 2;
+Serial "251015";
 
 !Inform 6 constants
 Constant DEATH_MENTION_UNDO;
-Constant MAX_CARRIED = 7;
+Constant MAX_CARRIED = 10;
 Constant NO_SCORE;
 
 !PunyInform constants
+Constant CUSTOM_ABBREVIATIONS;
 Constant OPTIONAL_EXTENDED_METAVERBS;
 Constant OPTIONAL_EXTENDED_VERBSET;
 Constant OPTIONAL_FULL_DIRECTIONS;
@@ -154,6 +157,7 @@ Constant MSG_UNLOCK_ALREADY_UNLOCKED 1004;
 Constant MSG_UNLOCK_KEY_DOESNT_FIT 1005;
 
 !Replaced actions
+Replace _UpdateDarkness;
 Replace GoSub; !Delete if diagonal directions are used
 Replace LockSub;
 Replace UnlockSub;
@@ -163,14 +167,34 @@ Include "globals.h";
 !Game-specific constants
 Constant AN "an";
 Constant THE "the";
-Constant CANT_GO_INTO_DESERT "This time venturing into the desert could lead to your doom. Explore the village and find those desperados.";
-Constant DONT_DROP_WEAPONS "Don't drop your weapons. You never know when you might need them.";
+Constant AGAIN_BUT_DONT_FIND_ANYTHING "again, but don't find anything else of interest.";
+Constant BOY_GESTURES_TO_YOU_TO_SIT "^The boy says, ~Sentar~, and gestures to you to sit on the rocking chair.";
+Constant CANT_GO_INTO_DESERT "Venturing back into the desert could lead to your doom. Explore the village first and find those desperados.";
+Constant DONT_LEAVE_WEAPONS "Don't leave your weapons. You never know when you might need them.";
 Constant DONT_GO_WANDERING_OFF "Don't go wandering off. The boy seems to have a plan, so follow his instructions.";
+Constant DRAG_BODY_INTO_VILLA "Drag the body into one of the villas.";
+Constant FOLLOW_BOYS_DIRECTIONS "Follow the boy's directions.";
+Constant FOR_SITTING_ON " for sitting on, not standing on.";
+Constant HANGING_ON_WALL " hanging on the wall.";
+Constant HAVE_YOU_EXAMINED "Have you examined the ";
+Constant ITS_ATTACHED_TO "You can't. It's attached to ";
+Constant LEGEND_OF_KENNETH_JOHNSON_IS_OVER "^^The legend of Kenneth Johnson is over.";
 Constant NOTHING_BUT_PEWS "There's nothing there but pews.";
+Constant ONE_END_OF_CORD_IS_TIED_TO " One end of the cord is tied to the ";
+Constant OTHER_END_IS_TIED_TO " The other end is tied to the ";
+Constant REMAINING_PART_IS_OUT_OF_REACH "Now that you've cut the rope, the remaining part is out of your reach.";
 Constant SMELL_IS_REVOLTING "The smell is revolting. It smells like burnt flesh intermingled with the smoke from burnt wood.";
 Constant SMELL_ROTTING_FLESH "You smell the stench of rotting flesh.";
+Constant THERES_CORD_TIED_TO_IT " There's a cord tied to it.";
 Constant TOO_FAR_TO_GO_ON_FOOT "It's too far to go on foot.";
+Constant YOU_CANT_GET_HIM_UP "You can't get him up the ";
+Constant YOU_DONT_HAVE_TIME_TO_SIT_AROUND "You don't have time to sit around.";
+Constant YOU_HEAR_CLATTERING_NOISE " You hear a clattering noise coming from the sacristy, but you'll now be able to investigate it, as the lever is tied tightly in position.";
 Constant YOU_PLACE_IT_CAREFULLY "You place it down carefully, so as not to break the glass.";
+Constant YOU_PUSH_LEVER_AND_TIE_CORD_TO "You push the lever down and tie the other end of the cord to ";
+Constant YOU_TIE_ONE_END_OF_CORD "You tie one end of the cord to the ";
+Constant YOU_UNTIE_CORD_FROM "You untie the cord from the ";
+Constant YOURE_OUTNUMBERED "You're outnumbered. If you open fire without creating a diversion first, you'll be on a cloud singing with the angels before you know it.";
 
 !Game-specific variables
 
@@ -325,22 +349,11 @@ with
   [;
     Drop:
       if (location ~= room20)
-        print_ret (string)DONT_DROP_WEAPONS;
+        print_ret (string)DONT_LEAVE_WEAPONS;
     Load:
-      if (second == nothing && bullets in player)
-      {
-        print "(with the bullets)^";
-        second = bullets;
-      }
-      if (second == nothing)
-        "You have nothing to load it with.";
-      if (second ~= bullets)
-        "You can't load the revolver with ", (ThatOrThose)second, ".";
-      if (self.number == 6)
-        print "The revolver is already fully loaded. Besides, those";
-      else
-        print "Those";
-      " are rifle bullets. They can't be loaded into your revolver.";
+      if (CantBeLoaded())
+        rtrue;
+      "Those are rifle bullets. They can't be loaded into your revolver.";
   ],
   number 6,
 has;
@@ -380,17 +393,10 @@ with
   [;
     Drop:
       if (location ~= room20)
-        print_ret (string)DONT_DROP_WEAPONS;
+        print_ret (string)DONT_LEAVE_WEAPONS;
     Load:
-      if (second == nothing && bullets in player)
-      {
-        print "(with the bullets)^";
-        second = bullets;
-      }
-      if (second == nothing)
-        "You'll have to tell me what to load it with.";
-      if (second ~= bullets)
-        "You can't load the rifle with ", (ThatOrThose)second, ".";
+      if (CantBeLoaded())
+        rtrue;
       self.number = self.number + 12;
       move bullets to limbo;
       "You load the bullets into your rifle. You're now ready to make the world a better place.";
@@ -443,7 +449,7 @@ has scenery;
 !----------------------------------------
 Object "hoof prints"
 with
-  name 'fresh' 'horses^' 'hoof' 'hooves' 'tracks' 'prints' 'traces',
+  name 'fresh' 'horses^' 'hoof' 'prints' 'hoofprints' 'hooves' 'tracks''traces',
   description
   [;
     print "You can make out hoof prints from a large group of horses, but you can't tell how many. The prints are a few days old, so you bet they belong to Manolo Ramirez's desperados. The hoof prints head west ";
@@ -478,26 +484,10 @@ with
       else
         ". You would have been able to read it, but the wood is now splintered from where you shot it.";
     Shoot:
-      if (second == nothing && rifle in player && revolver in player)
-        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT SIGN WITH REVOLVER.";
-      if (second == nothing && revolver in player)
-      {
-        print "(with the revolver)^";
-        second = revolver;
-      }
-      if (second == nothing && rifle in player)
-      {
-        print "(with the rifle)^";
-        second = rifle;
-      }
-      if (second == nothing)
-        "You have no weapon.";
-      if (second ~= revolver or rifle)
-        "You can't shoot anything with ", (ThatOrThose)second, ".";
+      if (CantBeShot())
+        rtrue;
       if (sign has general)
         "You've already shot it once and splintered the wood. There's no point shooting it again and wasting bullets.";
-      if (second.number == 0)
-        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
       second.number--;
       give sign general;
       "BANG! You shoot the sign and splinter the wood. Feel better now? In retrospect, that was probably a bad idea, as you're advertising your presence to the bandits if they're in the vicinity.";
@@ -661,8 +651,8 @@ with
       if (verb_word == 'lie')
         "The chairs aren't suitable for lying on.";
       if (verb_word == 'stand')
-        "The chairs are for sitting on, not standing on.";
-      "You don't have time to sit around on shabby, broken chairs.";
+        "The chairs are", (string)FOR_SITTING_ON;
+      print_ret (string)YOU_DONT_HAVE_TIME_TO_SIT_AROUND;
     Take:
       "You don't need them.";
   ],
@@ -676,6 +666,14 @@ with
   description "You're in a bedroom that looks pretty untidy. You can't tell if it was always like this or it's just been messed up by the outlaws. They may well have stayed here overnight. The exit to the east leads back to the inn.",
   e_to room04,
   out_to room04,
+  before
+  [;
+    Hint:
+      if (mirror hasnt moved)
+        "You wonder if there's anything behind the mirror.";
+      if (plug in hole_in_bedroom)
+        "That plug may be useful for more than just hanging a mirror.";
+  ],
 has light;
 
 !----------------------------------------
@@ -685,6 +683,37 @@ Object "bedroom" room05
 with
   name 'bedroom' 'accommodation',
   description "The bedroom may have served as accommodation for passing travellers.",
+has scenery;
+
+!----------------------------------------
+! Wall
+!----------------------------------------
+Object "wall" room05
+with
+  name 'wall',
+  description
+  [;
+    if (mirror hasnt moved)
+      "There's a mirror", (string)HANGING_ON_WALL;
+    print "There's a ";
+    if (plug in hole_in_bedroom)
+      print "plug";
+    else
+      print "hole";
+    print " in the wall where the mirror was hanging";
+    if (plug notin hole_in_bedroom)
+      print ", but the plug is missing, so you can't hang the mirror back on the wall";
+    ".";
+  ],
+  before
+  [;
+    Receive:
+      if (noun ~= mirror)
+        rfalse;
+      if (plug in hole_in_bedroom)
+        <<PutOn mirror plug>>;
+      "You can't. The plug's missing.";
+  ],
 has scenery;
 
 !----------------------------------------
@@ -701,16 +730,15 @@ with
   before
   [;
     Enter:
-      if (verb_word == 'lie')
-        <<Sleep>>;
       if (verb_word == 'sit')
         "You sit on the bed to try it. Yep, it sure is comfy, but you have no time to waste sitting around on a strange bed, so you stand up again.";
       if (verb_word == 'stand')
         "The bed might be all messed up, but that doesn't mean you can stand on it in your dirty boots.";
+      <<Sleep>>;
     LookUnder:
       "Nope, no desperados hiding under there.";
   ],
-has static supporter;
+has enterable static supporter;
 
 !----------------------------------------
 ! Mirror
@@ -721,16 +749,22 @@ with
   description
   [;
     print "It's a small beauty mirror";
-    if (mirror hasnt moved)
+    if (self hasnt moved)
       print " hanging on the wall";
     ". You remember when you were a kid and used to blind your friends by reflecting the sun's rays with a mirror like this, just to see them trip and fall.";
+  ],
+  before
+  [;
+    LookUnder:
+      if (self hasnt moved)
+        "You can't see behind it while it's", (string)HANGING_ON_WALL;
   ],
   after
   [;
     Drop:
       print_ret (string)YOU_PLACE_IT_CAREFULLY;
     Take:
-      if (mirror hasnt moved)
+      if (self hasnt moved)
       {
         move hole_in_bedroom to room05;
         "When you take the mirror off the wall, you expose the wooden plug that it was hanging on.";
@@ -744,7 +778,7 @@ has;
 Object hole_in_bedroom "small hole"
 class OpenContainer
 with
-  name 'small' 'hole' 'in' 'wall',
+  name 'small' 'hole',
   description
   [;
     print "It's a small hole in the bedroom wall that was exposed when you removed the mirror. ";
@@ -773,22 +807,21 @@ with
       print " and twice as long.";
     if (self has general)
     {
-      print " There's a cord tied to it.";
+      print (string)THERES_CORD_TIED_TO_IT;
       if (lever has general)
-        print " The other end of the cord is tied to the lever.";
+        print (string)OTHER_END_IS_TIED_TO, "lever.";
     }
     "";
   ],
   before
   [;
     Receive:
-      if (noun == mirror && self in hole_in_bedroom)
-      {
-        remove hole_in_bedroom;
-        move mirror to location;
-        give mirror ~moved;
-        "You hang the mirror back on the plug.";
-      }
+      if (noun ~= mirror || self notin hole_in_bedroom)
+        print_ret (The)noun, " won't fit on the plug.";
+      remove hole_in_bedroom;
+      move mirror to location;
+      give mirror ~moved;
+      "You hang the mirror back on the plug.";
     Take:
       if (self has general)
         "You'll need to untie the cord before taking the plug out of the hole.";
@@ -800,12 +833,12 @@ has;
 !========================================
 Object room06 "Kitchen"
 with
-  description 
+  description
   [;
     print "The inn's kitchen is a small room, the most notable furniture being a large table placed right slap bang in the middle of the floor. ";
     if (trapdoor has absent)
       print "You notice scratches on the floor beside the table. ";
-    else 
+    else
       print "Now that you pushed the table, you can see a trapdoor on the floor. ";
     "The shelves on the south wall, opposite the exit from the kitchen, look like they've been emptied by the desperados.";
   ],
@@ -817,6 +850,16 @@ with
     return trapdoor;
   ],
   out_to room04,
+  before
+  [;
+    Hint:
+      if (cupboard hasnt open && knife hasnt moved)
+        "Open the cupboard.";
+      if (trapdoor has absent)
+        "Examine the scratches and look under the table.";
+      if (trapdoor hasnt open && room07 hasnt visited)
+        "You wonder what's beneath that trapdoor.";
+  ],
 has light;
 
 !----------------------------------------
@@ -964,6 +1007,12 @@ with
   description "You're inside a narrow cellar with a very low ceiling. A faint light filters in from the trapdoor above, where you lowered yourself to the floor.",
   u_to trapdoor,
   out_to trapdoor,
+  before
+  [;
+    Hint:
+      if (sarsaparilla hasnt moved)
+        "That bottle of sarsaparilla may come in handy.";
+  ],
 has;
 
 !----------------------------------------
@@ -1121,7 +1170,7 @@ with
   before
   [;
     Search:
-      "There's nothing to search here.";
+      "You find nothing but sorrow for the cruelty inflicted here.";
   ],
 has animate pluralname;
 
@@ -1140,6 +1189,15 @@ with
     Go:
       if (self.state ~= 0 && selected_direction == n_to or s_to or w_to)
         print_ret (string)DONT_GO_WANDERING_OFF;
+    Hint:
+      if (TestScope(sombrero) && sombrero hasnt worn)
+        "That sombrero would make a good disguise if the desperados come back.";
+      if (dead_outlaw in self && dead_outlaw hasnt general)
+        "Search the body and do what is suggested.";
+      if (dead_outlaw in self)
+        print_ret (string)DRAG_BODY_INTO_VILLA;
+      if (brave_boy in self)
+        print_ret (string)FOLLOW_BOYS_DIRECTIONS;
   ],
   daemon
   [;
@@ -1155,15 +1213,15 @@ with
       1:if (location ~= room21)
           "^The boy pulls you and gestures to the east. ~Vamos, gringo. Vamos.~";
         self.state++;
-        "^The boy says, ~Sentar~, and gestures to you to sit on the rocking chair.";
+        print_ret (string)BOY_GESTURES_TO_YOU_TO_SIT;
       2:if (player notin rocking_chair)
-          "^The boy says, ~Sentar~, and gestures to you to sit on the rocking chair.";
+          print_ret (string)BOY_GESTURES_TO_YOU_TO_SIT;
         self.state++;
-        move mirror to limbo;
         if (mirror in player)
           print "^The boy takes the mirror from you.";
         else
           print "^The boy shows you the mirror from the inn.";
+        move mirror to limbo;
         " What on Earth is he up to?";
       3:if (location == room21)
         {
@@ -1186,7 +1244,7 @@ with
           " and gives you a wave. ~Oye, Pablo, unete a nosotros para tomar una copa.~ Despite the heat, you feel cold sweat running down your back, but you hold still.";
         StopDaemon(self);
         deadflag = 1;
-        ". ~Oye, hay un gringo en el porche.~ Damn, he's recognised you. You should have worn a disguise. Before you have a chance to react, the desperado draws his gun and shoots you.^^The legend of Kenneth Johnson is over.";
+        ". ~Oye, hay un gringo en el porche.~ Damn, he's recognised you. You should have worn a disguise. Before you have a chance to react, the desperado draws his gun and shoots you.", (string)LEGEND_OF_KENNETH_JOHNSON_IS_OVER;
       6:self.state++;
         "^All of a sudden, the boy comes out of hiding and shines the mirror into the eyes of the bandits. One of them is blinded by the light and suddenly swerves into the horse of one of his compatriots. The second man is offended by this seeming act of violence and starts a fight. Within moments, the desperados are in disarray. Now is the time to act!";
       7:self.state++;
@@ -1196,7 +1254,7 @@ with
       9:self.state++;
         StopDaemon(self);
         deadflag = 1;
-        "^After the initial brawl, the desperados manage to contain the situation. When they realise that they've been tricked, they start firing haphazardly and kill you without hesitation.^^The legend of Kenneth Johnson is over.";
+        "^After the initial brawl, the desperados manage to contain the situation. When they realise that they've been tricked, they start firing haphazardly and kill you without hesitation.", (string)LEGEND_OF_KENNETH_JOHNSON_IS_OVER;
       }
   ],
   state 0,
@@ -1227,7 +1285,7 @@ with
     PullDir:
       if (location == room10 && selected_direction == n_to or e_to)
       {
-        print "You can't get him up the ";
+        print (string)YOU_CANT_GET_HIM_UP;
         if (selected_direction == n_to)
           "church steps.";
         else
@@ -1241,9 +1299,11 @@ with
         StartDaemon(room10);
         <<Go FAKE_N_OBJ>>;
       }
+      if (location == room03 && selected_direction == s_to)
+        "You need to hide the body in a villa so that he won't be found, but there are no villas that way.";
       if (location == room03 && selected_direction == e_to or w_to)
       {
-        print "You can't get him up the ";
+        print (string)YOU_CANT_GET_HIM_UP;
         if (selected_direction == e_to)
           "porch steps.";
         else
@@ -1261,7 +1321,7 @@ with
       if (self has general)
         "You've already searched the body, but didn't find anything.";
       give self general;
-      "You search the body, but don't find anything noteworthy. You should now hide him in case the other desperados return. Perhaps you could drag him into one of the villas.";
+      "You search the body, but don't find anything noteworthy. You should now hide him in case the other desperados return.";
   ],
 has animate;
 
@@ -1275,7 +1335,7 @@ with
   [;
     print "It's the sombrero the outlaw was wearing. ";
     if (self hasnt worn)
-      print "You should put it on as a";
+      print "You could wear it as a";
     else
       print "It makes a good";
     " disguise, in case the others come back.";
@@ -1339,7 +1399,7 @@ with
   life
   [;
     Attack:
-      "If you open fire without creating a diversion first, you'll be on a cloud singing with the angels before you know it.";
+      print_ret (string)YOURE_OUTNUMBERED;
     ThrowAt:
       if (noun ~= snake_bottle)
         "I don't think you should throw ", (the)noun, " at the desperados or they'll know you're not one of them.";
@@ -1351,7 +1411,9 @@ with
   before
   [;
     Shoot:
-      "You're outnumbered. If you open fire without creating a diversion first, you'll be on a cloud singing with the angels before you know it.";
+      if (CantBeShot())
+        rtrue;
+      print_ret (string)YOURE_OUTNUMBERED;
   ],
 has animate pluralname;
 
@@ -1369,6 +1431,21 @@ with
     Go:
       if (room10.state ~= 0 && selected_direction == n_to or w_to)
         print_ret (string)DONT_GO_WANDERING_OFF;
+    Hint:
+      if (vultures in self)
+        "Oh, my god. Those vultures are eating the woman! Scare them off with your revolver.";
+      if (key in nothing)
+        "If you can't get into the villa, try searching the woman.";
+      if (cloth in nothing)
+        "Search the woman again.";
+      if (front_door hasnt general)
+        "You found a key earlier. Try it here.";
+      if (room12 hasnt visited)
+        "You wonder what's inside the villa.";
+      if (dead_outlaw in self)
+        print_ret (string)DRAG_BODY_INTO_VILLA;
+      if (brave_boy in self)
+        print_ret (string)FOLLOW_BOYS_DIRECTIONS;
     Smell:
       print_ret (string)SMELL_ROTTING_FLESH;
   ],
@@ -1427,6 +1504,11 @@ with
     else
       return room11;
   ],
+  after
+  [;
+    Unlock:
+      give self general;
+  ],
   with_key key,
   found_in room11 room12,
 has door lockable locked openable scenery;
@@ -1462,7 +1544,7 @@ with
         move cloth to location;
         "and feel a piece of cloth. When you pull it out, you see that it's a cotton handkerchief, so you place it over the woman's face.";
       }
-      "again, but don't find anything else.";
+      print_ret (string)AGAIN_BUT_DONT_FIND_ANYTHING;
   ],
 has animate female;
 
@@ -1505,24 +1587,8 @@ with
   before
   [;
     Shoot:
-      if (second == nothing && rifle in player && revolver in player)
-        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT VULTURES WITH REVOLVER.";
-      if (second == nothing && revolver in player)
-      {
-        print "(with the revolver)^";
-        second = revolver;
-      }
-      if (second == nothing && rifle in player)
-      {
-        print "(with the rifle)^";
-        second = rifle;
-      }
-      if (second == nothing)
-        "You have no weapon.";
-      if (second ~= revolver or rifle)
-        "You can't shoot anything with ", (ThatOrThose)second, ".";
-      if (second.number == 0)
-        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
+      if (CantBeShot())
+        rtrue;
       second.number--;
       move vultures to limbo;
       move feathers to location;
@@ -1552,6 +1618,12 @@ Object room12 "Inside Villa"
 with
   description "The villa is quite dark inside. From what you can see, it looks quite modest with minimal furnishings. It doesn't appear to have been plundered by the desperados. Maybe the locked door kept them out or they weren't interested in such a humble abode. At any rate, you don't have time to look around, so you should leave through the front door to the south.",
   s_to front_door,
+  before
+  [;
+    Hint:
+      if (dead_outlaw notin self)
+        "This looks like a good place to hide something...if you need to.";
+  ],
 has light;
 
 !========================================
@@ -1570,6 +1642,12 @@ with
   ],
   e_to NOTHING_BUT_PEWS,
   w_to NOTHING_BUT_PEWS,
+  before
+  [;
+    Hint:
+      if (outlaw in room20)
+        "You can't go outside while the outlaw is there, but you can shoot him from a safe distance, perhaps somewhere with a good line of sight to the village square.";
+  ],
 has light;
 
 !----------------------------------------
@@ -1666,6 +1744,11 @@ with
   out_to room14,
   before
   [;
+    Hint:
+      if (bullets in nothing)
+        "You'd normally search a dead body.";
+      if (bullets notin limbo)
+        "Did you examine the bullets? Time to load them into the appropriate weapon.";
     Smell:
       print_ret (string)SMELL_ROTTING_FLESH;
   ],
@@ -1687,10 +1770,10 @@ with
       if (verb_word == 'lie')
         "The seat isn't long enough to lie on.";
       if (verb_word == 'stand')
-        "The seat is for sitting on, not standing on.";
-      "You don't have time to sit around.";
+        "The seat is", (string)FOR_SITTING_ON;
+      print_ret (string)YOU_DONT_HAVE_TIME_TO_SIT_AROUND;
     Take:
-      "You don't need to bother about it.";
+      "The board is nailed in place.";
   ],
 has scenery supporter;
 
@@ -1720,7 +1803,7 @@ with
         move bullets to location;
         "and find some bullets. You wonder why a priest's helper would carry bullets around, but you're so glad he did. Someone is protecting you from above.";
       }
-      "again, but don't find anything else of interest.";
+      print_ret (string)AGAIN_BUT_DONT_FIND_ANYTHING;
   ],
 has animate;
 
@@ -1763,6 +1846,16 @@ with
       return room19;
   ],
   out_to room16,
+  before
+  [;
+    Hint:
+      if (short_rope in nothing)
+        "You could try cutting the rope.";
+      if (ladder notin location)
+        print_ret (string)HAVE_YOU_EXAMINED, "ceiling? You'll have to get that trapdoor open, but not from here.";
+      if (room19 hasnt visited)
+        "Climb the ladder.";
+  ],
 has light;
 
 !----------------------------------------
@@ -1845,7 +1938,7 @@ with
       else
         <<Go FAKE_D_OBJ>>;
     Take:
-      "You can't. It's attached to some sort of mechanism beside the trapdoor.";
+      print_ret (string)ITS_ATTACHED_TO, "some sort of mechanism beside the trapdoor.";
   ],
   found_in room17 room19,
 has absent static;
@@ -1883,7 +1976,7 @@ with
         second = knife;
       }
       if (second == nothing)
-        "You'll have to tell me what to cut it with.";
+        "You'd need something sharp to do that.";
       if (second ~= knife)
         "You'll need something sharper than ", (a)second, ".";
       give self general;
@@ -1891,16 +1984,16 @@ with
       "You reach as high as you can and cut a short length of rope from the end of the long rope and it falls to the floor.";
     Pull:
       if (self has general && location == room17)
-        "Now that you've cut the rope, the remaining part is out of your reach.";
+        print_ret (string)REMAINING_PART_IS_OUT_OF_REACH;
       else
         "You'd better not, unless you want to signal your position to those murderers.";
     Push:
       "The rope can only be pulled.";
     Take:
       if (self has general && location == room17)
-        "Now that you've cut the rope, the remaining part is out of your reach.";
+        print_ret (string)REMAINING_PART_IS_OUT_OF_REACH;
       else
-        "You can't. It's attached to the bell at the top of the bell tower.";
+        print_ret (string)ITS_ATTACHED_TO, "the bell at the top of the bell tower.";
   ],
   found_in room17 room19 room20,
 has static;
@@ -1947,13 +2040,13 @@ with
     print "It's a thin strand from the rope that you unravelled.";
     if (lever has general)
     {
-      print " One end of the cord is tied to the lever.";
+      print (string)ONE_END_OF_CORD_IS_TIED_TO, "lever.";
       if (plug has general)
-        print " The other end of the cord is tied to the plug.";
+        print (string)OTHER_END_IS_TIED_TO, "plug.";
     }
     else
       if (plug has general)
-        print " One end of the cord is tied to the plug.";
+        print (string)ONE_END_OF_CORD_IS_TIED_TO, "plug.";
     "";
   ],
   before
@@ -1979,11 +2072,11 @@ with
         if (plug hasnt general)
         {
           move cord to location;
-          "You tie one end of the cord to the lever.";
+          print_ret (string)YOU_TIE_ONE_END_OF_CORD, "lever.";
         }
         give ladder ~absent;
         give opening ~absent;
-        "You push the lever down and tie the other end of the cord to it. You hear a clattering noise coming from the sacristy, but you'll now be able to investigate it, as the lever is tied tightly in position.";
+        print_ret (string)YOU_PUSH_LEVER_AND_TIE_CORD_TO, "it.", (string)YOU_HEAR_CLATTERING_NOISE;
       }
       !We now know that second is the plug
       if (plug notin hole_in_bedroom or hole_in_sanctuary)
@@ -1995,11 +2088,11 @@ with
       if (lever hasnt general)
       {
         move cord to location;
-        "You tie one end of the cord to the plug.";
+        print_ret (string)YOU_TIE_ONE_END_OF_CORD, "plug.";
       }
       give ladder ~absent;
       give opening ~absent;
-      "You push the lever down and tie the other end of the cord to the plug. You hear a clattering noise coming from the sacristy, but you'll now be able to investigate it, as the lever is tied tightly in position.";
+      print_ret (string)YOU_PUSH_LEVER_AND_TIE_CORD_TO, "the plug.", (string)YOU_HEAR_CLATTERING_NOISE;
     Untie:
       if (lever hasnt general && plug hasnt general)
         "The cord isn't tied to anything.";
@@ -2007,7 +2100,7 @@ with
       if (lever has general)
       {
         give lever ~general;
-        print "You untie the cord from the lever";
+        print (string)YOU_UNTIE_CORD_FROM, "lever";
         if (plug has general)
         {
           give plug ~general;
@@ -2019,7 +2112,7 @@ with
       }
       !We now know that the cord is tied only to the plug
       give plug ~general;
-      "You untie the cord from the plug.";
+      print_ret (string)YOU_UNTIE_CORD_FROM, "plug.";
   ],
 has;
 
@@ -2033,8 +2126,18 @@ with
   before
   [;
     Hint:
-      if (lever hasnt general && plug hasnt general)
-        "You need to lock the lever in position by tying it to something else with a cord.";
+      if (short_rope in nothing)
+        "Have you tried pushing the lever?";
+      if (cord in nothing)
+        "Have you tried tying the rope to the lever?";
+      if (lever hasnt general)
+        "Tie the cord to the lever.";
+      if (plug hasnt moved)
+        "Have you found something that will fit in the hole? If not, come back later.";
+      if (plug notin hole_in_sanctuary)
+        print_ret (string)HAVE_YOU_EXAMINED, "hole and the plug? They're the same size.";
+      if (plug hasnt general)
+        "Tie the cord to the plug.";
   ],
 has light;
 
@@ -2058,9 +2161,9 @@ with
     print "It's a short lever, somewhat like those foot pedals you've seen on the upright pianos back in the bar rooms of Tucson.";
     if (self has general)
     {
-      print " There's a cord tied to it.";
+      print (string)THERES_CORD_TIED_TO_IT;
       if (plug has general)
-        print " The other end of the cord is tied to the plug.";
+        print (string)OTHER_END_IS_TIED_TO, "plug.";
     }
     "";
   ],
@@ -2104,6 +2207,12 @@ with
   description "You're in the lower area of the bell tower. The long rope hangs above you and, looking higher, you can make out the bell. Some stairs lead up to it, while a wooden ladder leads down through an opening to the sacristy. The mechanism controlling the ladder is beside the opening.",
   u_to room20,
   d_to room17,
+  before
+  [;
+    Hint:
+      if (room20 hasnt visited)
+        "Climb the stairs.";
+  ],
 has light;
 
 !----------------------------------------
@@ -2185,8 +2294,31 @@ with
   d_to
   [;
     if (revolver notin player || rifle notin player)
-      "Don't leave your weapons behind. You never know when you might need them.";
+      print_ret (string)DONT_LEAVE_WEAPONS;
     return room19;
+  ],
+  before
+  [;
+    Hint:
+      if (scared_boy in self && (revolver in player || rifle in player))
+        print_ret (string)HAVE_YOU_EXAMINED, "boy or talked to him? Drop whatever he's scared of.";
+      if (scared_boy hasnt general)
+        "Talk to the boy.";
+      if (scared_boy in self)
+        "The boy is thirsty.";
+      if (outlaw in self)
+      {
+        print "Take down the outlaw before his comrades return";
+        if (rifle notin player)
+          ", but you'll need a long-range weapon.";
+        if (bullets in nothing)
+          ", but you'll need some ammo. Perhaps a confession is in order.";
+        if (rifle.number == 0)
+          ", but you'll need to load the rifle.";
+        ".";
+      }
+      if (dead_outlaw in room10)
+        "Time to see how good your aim was.";
   ],
 has light;
 
@@ -2266,7 +2398,7 @@ with
             "The boy points at the bottle, then points to himself and makes a drinking gesture. Perhaps he's thirsty.";
         'flask', 'tequila':
           if (TestScope(tequila))
-            "The boy points at the bottle, then points at you and makes a drinking gesture.";
+            "The boy points at the flask, then points at you and makes a drinking gesture.";
         'manolo', 'ramirez':
           "As soon as you say that name, the poor kid starts crying. He looks scared to death. Ramirez and his band must be wiped off this Earth.";
         default:
@@ -2304,32 +2436,16 @@ Object outlaw "outlaws"
 with
   article "one of the",
   name 'bandit' 'outlaw' 'one' 'of' 'outlaws',
-  description "From your position inside the bell tower you can see one of the outlaws down in village square. He seems to be alone, so it's a good time to take at least one of them down before he regroups with the others.",
+  description "From your position inside the bell tower, you can see one of the outlaws down in the village square. He seems to be alone, so it's a good time to take at least one of them down before he regroups with the others.",
   before
   [;
     if (action ~= ##Examine or ##Shoot)
       "He's too far away.";
     Shoot:
-      if (second == nothing && rifle in player && revolver in player)
-        "You're carrying two weapons. Tell me which one to use, e.g. SHOOT OUTLAW WITH REVOLVER.";
-      if (second == nothing && revolver in player)
-      {
-        print "(with the revolver)^";
-        second = revolver;
-      }
-      if (second == nothing && rifle in player)
-      {
-        print "(with the rifle)^";
-        second = rifle;
-      }
-      if (second == nothing)
-        "You have no weapon.";
-      if (second ~= revolver or rifle)
-        "You can't shoot anything with ", (ThatOrThose)second, ".";
+      if (CantBeShot())
+        rtrue;
       if (second == revolver)
         "It's risky to use your revolver, as it's a short-range weapon. If you miss, all hell will break loose. It's better to use your rifle from this distance.";
-      if (second.number == 0)
-        "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
       second.number--;
       move self to limbo;
       move sombrero to room10;
@@ -2352,6 +2468,13 @@ with
     Go:
       if (room10.state ~= 0 && selected_direction == w_to)
         print_ret (string)DONT_GO_WANDERING_OFF;
+    Hint:
+      if (brave_boy in self)
+        print_ret (string)FOLLOW_BOYS_DIRECTIONS;
+      if (room10.state < 7)
+        "Wait to see what happens.";
+      if (room10.state < 9)
+        "Throw the bottle! Quick!";
   ],
 has light;
 
@@ -2454,6 +2577,60 @@ Object dummy_key;
 !========================================
 ! Other routines
 !========================================
+[ _UpdateDarkness p_silent _ceil _old_darkness _darkness;
+  if (location == thedark)
+    _old_darkness = true;
+  _ceil = ScopeCeiling(player);
+  if (_LookForLightInObj(_ceil, _ceil) == false)
+    _darkness = true;
+  if (_darkness ~= _old_darkness)
+    scope_modified = true;
+  if (_darkness)
+    location = thedark;
+  else
+    location = real_location;
+  if (_darkness ~= _old_darkness && p_silent == false)
+  {
+    new_line;
+    <Look>;
+  }
+];
+
+[ CantBeLoaded;
+  if (second == nothing && bullets in player)
+  {
+    print "(with the bullets)^";
+    second = bullets;
+  }
+  if (second == nothing)
+    "You have nothing to load it with.";
+  if (second ~= bullets)
+    "You can't load ", (the)second, " with ", (ThatOrThose)second, ".";
+  rfalse;
+];
+
+[ CantBeShot;
+  if (second == nothing && rifle in player && revolver in player)
+    "You're carrying two weapons. Tell me which one to use, e.g. SHOOT SIGN WITH REVOLVER.";
+  if (second == nothing && revolver in player)
+  {
+    print "(with the revolver)^";
+    second = revolver;
+  }
+  if (second == nothing && rifle in player)
+  {
+    print "(with the rifle)^";
+    second = rifle;
+  }
+  if (second == nothing)
+    "You have no weapon.";
+  if (second ~= revolver or rifle)
+    "You can't shoot anything with ", (a)second, ".";
+  if (second.number == 0)
+    "You pull the trigger, but nothing happens. ", (The)second, " mustn't be loaded.";
+  rfalse;
+];
+
 [ LowerCase c; ! for ZSCII matching ISO 8859-1
   switch (c)
   {
@@ -2588,7 +2765,7 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 ! Actions
 !========================================
 [ AboutSub;
-  print "This game is an enhanced, text-only port of the semi-graphic Italian adventure 'Kenneth Johnson: Desperados' by Bonaventura Di Bello. It was originally written with The Quill and Illustrator and published by Edizioni Hobby S.r.l. on the cover tape of 'Explorer', no. 12, November 1987 for the Commodore 64 and MSX.^^The data was extracted from the C64 version using UnQuill, translated to English and rewritten for a modern audience with the original author's permission. The new version includes many enhancements that weren't in the original. The coding was done using Inform 6 and the PunyInform library.^^";
+  print "This game is an adaptation of the Italian adventure 'Kenneth Johnson: Desperados' by Bonaventura Di Bello. It was originally written using The Quill and Illustrator and published by Edizioni Hobby S.r.l. on the cover tape of 'Explorer', no. 12, November 1987 for the Commodore 64 and MSX.^^The data was extracted from the C64 version using UnQuill, translated to English and rewritten for a modern audience with the original author's permission. The new version includes many enhancements that weren't in the original. The coding was done using Inform 6 and the PunyInform library.^^";
   <<Credits>>;
 ];
 
@@ -2606,7 +2783,7 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 ];
 
 [ CreditsSub;
-  "Original concept by Bonaventura Di Bello.^English translation by Garry Francis & Google Translate.^Game redesign and coding by Gianluca Girelli with assistance from Garry Francis.^Play testing by Garry Francis, Piergiorgio D'Errico, Jade, improvmonster, Robert Eggleston, and RJ Kowalski.";
+  "Original concept, game design and coding by Bonaventura Di Bello.^English translation by Garry Francis.^Game redesign and coding by Gianluca Girelli and Garry Francis.^Play testing by Charles Moore Jr, Jade J Aincioa, Piergiorgio d'Errico, R J Kowalski and Robert Eggleston.";
 ];
 
 [ DanceSub;
@@ -2615,11 +2792,10 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 
 [ FireSub;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "You'll have to tell me what to fire at.";
 ];
 
-!Delete GoSub if diagonal directions are used
 [ GoSub _prop;
   if (selected_direction == ne_to or nw_to or se_to or sw_to)
     "There are no diagonal directions in this game.";
@@ -2632,14 +2808,14 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 ];
 
 [ HelpSub;
-  "Tell me what to do using simple commands starting with a verb.^^Use LOOK (or L) to refresh the location description. Identify all the objects in the description and EXAMINE (or X) each one. Read responses carefully for hints.^^Use compass directions (N, S, E, W, U and D) to move around. Draw a map as you go.^^Use GET or TAKE to take objects and DROP to drop them again. Use WEAR to wear things like clothing and REMOVE to remove anything that's currently worn. Use INVENTORY (or I) to see what you're carrying and wearing.^^Use AGAIN (or G) to repeat the last command.^^Use UNDO to undo the last command if you make a mistake.^^Use SAVE to save the game and RESTORE to restore it again.^^There are over 100 verbs that you can use, so if something doesn't work, try a different verb or a different way of doing things. Use HINT if you get stuck.^^For full instructions, see the game page at <https://bdb-project.itch.io/desperados>.";
+  "Tell me what to do using simple commands starting with a verb.^^Use LOOK (or L) to refresh the location description. Identify all the objects in the description and EXAMINE (or X) each one. Read responses carefully for hints.^^Use compass directions (N, S, E, W, U and D) to move around. Draw a map as you go.^^Use GET or TAKE to take objects and DROP to drop them again. Use WEAR to wear things like clothing and REMOVE to remove anything that's currently worn. Use INVENTORY (or I) to see what you're carrying and wearing.^^Use AGAIN (or G) to repeat the last command.^^Use UNDO to undo the last command if you get killed, make a mistake or want to try something different.^^Use SAVE to save the game and RESTORE to restore it again.^^There are over 100 verbs that you can use, so if something doesn't work, try a different verb or a different way of doing things. Use HINT if you get stuck.^^For full instructions, see the game page at <https://bdb-project.itch.io/desperados>.";
 ];
 
 [ HideSub;
   if (noun == nothing)
     "There's nowhere to hide.";
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "If you want to hide ", (the)noun, ", try putting ", (ItOrThem)noun, " in something.";
 ];
 
@@ -2649,13 +2825,13 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 
 [ LoadSub;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "That would be a neat trick.";
 ];
 
 [ LockSub k;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   if (noun hasnt lockable)
   {
     PrintMsg(MSG_LOCK_NOT_A_LOCK, 'lock');
@@ -2729,8 +2905,8 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 ];
 
 [ ReadSub;
-  if (ObjectIsUntouchable(noun, true))
-    "I suppose you read tea leaves, too";
+  if (ObjectIsUntouchable(noun))
+    rtrue;
   "There's nothing legible on ", (ThatOrThose)noun, ".";
 ];
 
@@ -2747,7 +2923,7 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
   if (consult_words == 1 && NextWord() == 'xyzzy' or 'plover' or 'plugh' or 'yoho')
     <<MagicWord>>;
   if (AfterRoutines())
-    return;
+    rtrue;
   "Nothing happens.";
 ];
 
@@ -2755,7 +2931,9 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
   if (noun == nothing)
     "You point your finger in the air and say, ~Bang!~";
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
+  if (CantBeShot())
+    rtrue;
   if (noun == player)
     "Are you feeling suicidal?";
   "You can't just go around shooting things arbitrarily, especially in the Wild West. Choose your target carefully or it might get you killed.";
@@ -2773,7 +2951,7 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 
 [ UnlockSub k;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   if (noun hasnt lockable)
   {
     PrintMsg(MSG_UNLOCK_NOT_A_LOCK, 'unlock');
@@ -2806,7 +2984,7 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
 
 [ UnravelSub;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "You can't unravel ", (ThatOrThose)noun, ".";
 ];
 
@@ -2814,13 +2992,13 @@ Verb 'xyzzy' 'plover' 'plugh' 'yoho'
   if (noun == nothing)
     "What do you want to untie?";
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "You can't untie ", (ThatOrThose)noun, ".";
 ];
 
 [ UseSub;
   if (ObjectIsUntouchable(noun))
-    return;
+    rtrue;
   "You'll have to be more explicit than that.";
 ];
 
